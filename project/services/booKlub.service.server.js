@@ -1,5 +1,5 @@
 var app = require("../../express");
-var booKlubModel = require("../model/booklub/booKlub.model.server");
+var booKlubModel = require("../model/booKlub/booKlub.model.server");
 
 
 app.post("/api/project/booKlub", createBooKlub);
