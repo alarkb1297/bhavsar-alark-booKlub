@@ -20,9 +20,9 @@ mongoose.connect(connectionString);
 mongoose.Promise = q.Promise;
 module.exports = mongoose;
 
-require("./services/user.service.server");
-require("./services/book.service.server");
-require("./services/booKlub.service.server");
+require("../project/services/user.service.server");
+require("../project/services/book.service.server");
+require("../project/services/booKlub.service.server");
 
 var TestSchema = mongoose.Schema({
     message: String
