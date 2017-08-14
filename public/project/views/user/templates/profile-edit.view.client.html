@@ -1,0 +1,81 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a href="#!/profile">
+        <span class="pull-left glyphicon glyphicon-chevron-left ab-logo-color btn-lg"></span>
+    </a>
+
+    <a ng-click="model.updateUser(model.user)">
+        <span class="pull-right glyphicon glyphicon-ok ab-logo-color btn-lg"></span>
+    </a>
+
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.errorMessage" class="alert alert-danger">
+        {{model.errorMessage}}
+    </div>
+
+    <div ng-show="model.confMessage" class="ab-margin-bottom-spacing alert alert-success">
+        {{model.confMessage}}
+    </div>
+
+    <label class="ab-text" for="firstName">First Name</label>
+    <input name="firstName"
+           class="form-control"
+           placeholder="Alice"
+           ng-model="model.user.firstName"
+           id="firstName"/>
+
+    <label class="ab-text" for="lastName">Last Name</label>
+    <input name="lastName"
+           class="form-control"
+           ng-model="model.user.lastName"
+           placeholder="Wonderland"
+           id="lastName"/>
+
+    <label class="ab-text" for="username">Username</label>
+    <input name="username"
+           class="form-control"
+           ng-model="model.user.username"
+           readonly
+           id="username"/>
+
+    <label class="ab-text" for="email">Email</label>
+    <input name="email"
+           type="email"
+           class="form-control"
+           ng-model="model.user.email"
+           placeholder="alice@wonderland.com"
+           id="email"/>
+
+    <label class="ab-text" for="phone">Phone Number</label>
+    <input name="phone"
+           type="tel"
+           class="form-control"
+           ng-model="model.user.phone"
+           placeholder="8001234567"
+           id="phone"/>
+
+    <label class="ab-text" for="image">Image URL</label>
+    <input name="image"
+           type="url"
+           class="form-control"
+           ng-model="model.user.google.imgUrl"
+           placeholder="images.google.com"
+           id="image"/>
+
+    <a class="btn btn-block btn-danger" ng-click="model.deleteUser(model.user._id)" role="button">Unregister</a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+
+    <div class="pull-right ab-home-navbar-buttons">
+        <a ng-click="model.logout()">
+            <button type="button" class="btn navbar-btn btn-danger">Logout</button>
+        </a>
+    </div>
+
+</nav>

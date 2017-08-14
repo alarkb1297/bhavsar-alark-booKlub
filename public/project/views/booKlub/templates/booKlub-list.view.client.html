@@ -1,0 +1,57 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand navbar-left" href="#!">
+        <img class="ab-home-navbar-logo"
+             src="http://bhavsar-alark-webdev.herokuapp.com/project/logos/bK-medium-208px.png">
+    </a>
+
+    <div ng-show="model.user">
+        <a href="#!/booKlub/new">
+            <span class="pull-right glyphicon glyphicon-plus ab-logo-color btn-lg"></span>
+        </a>
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.confMessage" class="alert alert-success">
+        {{model.confMessage}}
+    </div>
+
+
+    <ul class="list-group">
+
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-11">Title</div>
+                <div class="col-xs-1">Follow</div>
+            </div>
+        </li>
+
+        <li ng-repeat="booKlub in model.booKlubs" class="list-group-item ab-admin-center-lists">
+            <div class="row">
+                <div class="col-xs-11">
+                    <a href="#!/booKlub/{{booKlub._id}}/edit">
+                        {{booKlub.title}}
+                    </a>
+                </div>
+                <div class="col-xs-1">
+                    <a ng-click="model.followBooKlub(booKlub._id)">
+                        <button type="button" class="btn navbar-btn btn-primary">Follow</button>
+                    </a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+    <a href="#!/profile">
+        <span class="pull-right glyphicon glyphicon-user ab-logo-color btn-lg"></span>
+    </a>
+
+</nav>

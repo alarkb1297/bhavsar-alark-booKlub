@@ -1,0 +1,92 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand navbar-left" href="#!">
+        <img class="ab-home-navbar-logo"
+             src="http://bhavsar-alark-webdev.herokuapp.com/project/logos/bK-medium-208px.png">
+    </a>
+
+
+    <div class="col-xs-9 pull-right ab-details-search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Books" ng-model="searchQuery">
+            <div class="input-group-btn">
+                <button type="button"
+                        class="btn ab-logo-color dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="true">By <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a ng-click="model.searchBookByTitle(searchQuery)">Title</a></li>
+                    <li><a ng-click="model.searchBookByAuthor(searchQuery)">Author</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+
+    <div ng-show="model.errorMessage" class="alert alert-danger">
+        {{model.errorMessage}}
+    </div>
+
+    <div ng-show="model.confMessage" class="alert alert-success">
+        {{model.confMessage}}
+    </div>
+
+    <div class="ab-book-details">
+
+        <img ng-src="{{model.book.volumeInfo.imageLinks.thumbnail}}"/>
+
+        <h3 class="ab-text">Title</h3>
+        <p class="ab-text">{{model.book.volumeInfo.title}}</p>
+
+        <h3 class="ab-text">Description</h3>
+        <div class="ab-text" ng-bind-html="model.trustHtmlContent(model.book.volumeInfo.description)"></div>
+
+        <h3 class="ab-text">Author</h3>
+        <div class="ab-text" ng-repeat="author in model.book.volumeInfo.authors">
+            {{author}}
+        </div>
+
+        <h3 class="ab-text">Genre</h3>
+        <div class="ab-text" ng-repeat="category in model.book.volumeInfo.categories">
+            {{category}}
+        </div>
+
+        <h3 class="ab-text">Page Count</h3>
+        <p class="ab-text">{{model.book.volumeInfo.pageCount}}</p>
+
+        <div ng-show="model.book.saleInfo.buyLink">
+            <h3 class="ab-text">Buy Link</h3>
+            <a class="ab-text" href="{{model.book.saleInfo.buyLink}}">{{model.book.saleInfo.buyLink}}</a>
+
+            <h3 class="ab-text">List Price</h3>
+            <p class="ab-text">
+                {{model.book.saleInfo.listPrice.currencyCode}} {{model.book.saleInfo.listPrice.amount}}</p>
+        </div>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+    <div ng-show="model.user">
+        <a ng-show="!model.inBookShelf" ng-click="model.createBook({'title' : model.book.volumeInfo.title,
+                                                            'volumeID' : model.volumeID,
+                                                            'imgUrl' : model.book.volumeInfo.imageLinks.thumbnail})">
+            <span class="pull-left glyphicon glyphicon-saved ab-logo-color btn-lg"></span>
+        </a>
+
+        <a ng-show="model.inBookShelf" ng-click="model.removeBookFromBookShelf(model.volumeID)">
+            <span class="pull-left glyphicon glyphicon-remove ab-logo-color btn-lg"></span>
+        </a>
+    </div>
+
+
+    <a href="#!/profile">
+        <span class="pull-right glyphicon glyphicon-user ab-logo-color btn-lg"></span>
+    </a>
+</nav>

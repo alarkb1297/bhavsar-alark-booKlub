@@ -1,0 +1,131 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a class="navbar-brand navbar-left" href="#!">
+        <img class="ab-home-navbar-logo"
+             src="http://bhavsar-alark-webdev.herokuapp.com/project/logos/bK-medium-208px.png">
+    </a>
+
+    <div class="pull-right ab-home-navbar-buttons">
+        <a href="#!/profile/edit">
+            <button type="button" class="btn navbar-btn btn-success">Edit</button>
+        </a>
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src={{model.user.google.imgUrl}}>
+        </div>
+        <div ng-show="model.user.google.imgUrl" class="useravatar">
+            <img alt="" src={{model.user.google.imgUrl}}>
+        </div>
+        <div ng-show="!model.user.google.imgUrl" class="useravatar">
+            <img alt="" src="https://www.drupal.org/files/profile_default.png">
+        </div>
+        <div class="card-info ab-text">
+            <span class="card-title">{{model.user.firstName}} {{model.user.lastName}}</span>
+            <span class="card-title">@{{model.user.username}}</span>
+        </div>
+
+    </div>
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group">
+        <div class="btn-group" role="group">
+            <button type="button" id="bookShelf" class="btn btn-default" href="#tab1" data-toggle="tab"><span
+                    class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                <div class="hidden-xs">bookShelf</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="booKlubs" class="btn btn-default" href="#tab2" data-toggle="tab"><span
+                    class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                <div class="hidden-xs">booKlubs</div>
+            </button>
+        </div>
+    </div>
+
+    <div class="well">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="tab1">
+                <div class="container-fluid">
+                    <div class="slick-carousel">
+                        <div class="ab-carousel-div" ng-repeat="book in model.bookShelf">
+                            <a href="#!/details/{{book.volumeID}}">
+                                <img class="ab-carousel-img" src="{{book.imgUrl}}">
+                                {{book.title}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade in" id="tab2">
+                <h3>This is tab 2</h3>
+            </div>
+            <div class="tab-pane fade in" id="tab3">
+                <h3>This is tab 3</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+    <div class="pull-right ab-home-navbar-buttons">
+        <a ng-click="model.logout()">
+            <button type="button" class="btn navbar-btn btn-danger">Logout</button>
+        </a>
+    </div>
+
+    <div ng-show="model.user.isAdmin" class="pull-left ab-profile-navbar-buttons">
+        <a href="#!/profile/admin-center">
+            <button type="button" class="btn navbar-btn btn-success">Admin Center</button>
+        </a>
+    </div>
+
+</nav>
+
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../../../../vendor/slick-carousel/slick/slick.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.slick-carousel').slick({
+            dots: true,
+            autoplay: true,
+            swipeToSlide: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+
+</script>
+
