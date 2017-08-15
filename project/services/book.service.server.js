@@ -1,7 +1,6 @@
 var app = require("../../express");
 var bookModel = require("../model/book/book.model.server");
 
-
 app.post("/api/project/user/:userID/book", createBook);
 app.delete("/api/project/book/:bookID", deleteBook);
 app.put("/api/project/book/:bookID", updateBook);

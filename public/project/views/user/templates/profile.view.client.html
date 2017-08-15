@@ -1,3 +1,4 @@
+<script src="../../../../vendor/slick-carousel/ab-js/ab-carousel-bookShelf.js"></script>
 <nav class="navbar navbar-default navbar-fixed-top">
 
     <a class="navbar-brand navbar-left" href="#!">
@@ -52,7 +53,7 @@
                     <div class="slick-carousel">
                         <div class="ab-carousel-div" ng-repeat="book in model.bookShelf">
                             <a href="#!/details/{{book.volumeID}}">
-                                <img class="ab-carousel-img" src="{{book.imgUrl}}">
+                                <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                                 {{book.title}}
                             </a>
                         </div>
@@ -85,47 +86,7 @@
 
 </nav>
 
-
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!--<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
 <script type="text/javascript" src="../../../../vendor/slick-carousel/slick/slick.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.slick-carousel').slick({
-            dots: true,
-            autoplay: true,
-            swipeToSlide: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-    });
-
-</script>
+<script type="text/javascript" src="../../../../vendor/slick-carousel/ab-js/ab-carousel-bookShelf.js"></script>
 
