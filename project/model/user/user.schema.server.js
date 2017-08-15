@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
     },
     phone: Number,
     bookShelf: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectBookModel"}],
-    // booKlubs: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectBooKlubModel"}],
+    booKlubs: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectBooKlubModel"}],
     isAdmin: {type: Boolean, default: 'false'},
     dateCreated: {type: Date, default: Date.now()}
 

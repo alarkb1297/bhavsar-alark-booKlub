@@ -14,6 +14,7 @@
         model.bookShelf = user.bookShelf;
 
         model.logout = logout;
+        model.unFollowBooKlub = unFollowBooKlub;
 
         function init() {
         }
@@ -23,6 +24,16 @@
             userService.logout()
                 .then(function (response) {
                     $location.url("/login");
+                })
+        }
+
+        function unFollowBooKlub(booKlubID) {
+            userService
+                .unFollowBooKlub(model.user._id, booKlubID)
+                .then(function (user) {
+                    model.errorMessage = "Successfully unfollowed booKlub";
+                    model.confMessage = null;
+                    location.reload();
                 })
         }
     }

@@ -21,6 +21,8 @@
             "checkLogin": checkLogin,
             "checkAdmin": checkAdmin,
             "logout": logout,
+            "followBooKlub": followBooKlub,
+            "unFollowBooKlub": unFollowBooKlub,
             "removeBookFromBookShelf": removeBookFromBookShelf
         };
         return api;
@@ -126,13 +128,34 @@
 
             var url = "/api/project/users/" + userID + "/book/remove/" + volumeID;
 
-            return $http.put(url)
+            return $http.delete(url)
                 .then(function (user) {
                     return user;
                 })
 
         }
 
+        function followBooKlub(userID, booKlub) {
+
+            var url = "/api/project/users/" + userID + "/booKlub/follow";
+
+            return $http.put(url, booKlub)
+                .then(function (user) {
+                    return user;
+                })
+
+        }
+
+        function unFollowBooKlub(userID, booKlubID) {
+
+            var url = "/api/project/users/" + userID + "/booKlub/unfollow/" + booKlubID;
+
+            return $http.delete(url)
+                .then(function (user) {
+                    return user;
+                })
+
+        }
     }
 
 })();

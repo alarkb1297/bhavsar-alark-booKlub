@@ -6,6 +6,6 @@ The repo created here is used for the CS4550 Web Development class. It will be w
 
 ## Links
 [Heroku](https://bhavsar-alark-webdev.herokuapp.com)  
-[Project](https:/bhavsar-alark-webdev.herokuapp.com/project/)  
+[Project](https:/bhavsar-alark-booklub.herokuapp.com/project/)  
 [Assignments](https://bhavsar-alark-webdev.herokuapp.com/assignment/index.html#!/login)  
  

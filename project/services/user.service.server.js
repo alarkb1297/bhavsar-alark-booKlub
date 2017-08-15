@@ -23,9 +23,11 @@ app.delete("/api/project/user/:userID", auth, deleteUser);
 app.get("/api/project/users/:userID", findUserById);
 app.get("/api/project/users", findAllUsers);
 app.post("/api/project/logout", logout);
-app.put("/api/project/users/:userID/book/remove/:volumeID", removeBookFromBookShelf);
+app.delete("/api/project/users/:userID/book/remove/:volumeID", removeBookFromBookShelf);
 app.get("/api/project/checkLogin", checkLogin);
 app.get("/api/project/checkAdmin", checkAdmin);
+app.put("/api/project/users/:userID/booKlub/follow", auth, followBooKlub);
+app.delete("/api/project/users/:userID/booKlub/unfollow/:booKlubID", auth, unFollowBooKlub);
 app.get('/project/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 app.get('/project/auth/google/callback',
     passport.authenticate('google', {
@@ -249,6 +251,38 @@ function findAllUsers(req, response) {
             return;
         }, function (err) {
             response.sendStatus(404).send(err);
+            return;
+        });
+}
+
+function followBooKlub(req, response) {
+
+    var userID = req.params.userID;
+    var booKlub = req.body;
+
+    userModel
+        .followBooKlub(userID, booKlub)
+        .then(function (user) {
+            response.json(user);
+            return;
+        }, function (err) {
+            response.send("0");
+            return;
+        });
+}
+
+function unFollowBooKlub(req, response) {
+
+    var userID = req.params.userID;
+    var booKlubID = req.params.booKlubID;
+
+    userModel
+        .unFollowBooKlub(userID, booKlubID)
+        .then(function (user) {
+            response.json(user);
+            return;
+        }, function (err) {
+            response.send("0");
             return;
         });
 }

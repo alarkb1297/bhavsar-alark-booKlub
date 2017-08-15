@@ -81,7 +81,6 @@
                     model.confMessage = null;
                     model.inBookShelf = false;
                 })
-
         }
 
         function isBookInBookShelf(_volumeID) {

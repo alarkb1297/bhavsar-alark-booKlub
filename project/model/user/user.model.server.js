@@ -24,6 +24,7 @@ function findUserById(userID) {
     return userModel
         .findById(userID)
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec();
 }
 
@@ -40,6 +41,7 @@ function findUserByUsername(username) {
     return userModel
         .findOne({username: username})
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec();
 }
 
@@ -51,6 +53,7 @@ function findUserByGoogleId(googleID) {
     return userModel
         .findOne({"google.id": googleID})
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec();
 }
 
@@ -73,6 +76,7 @@ function removeBookFromBookShelf(userID, _volumeID) {
     return userModel
         .findById(userID)
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec()
         .then(function (user) {
 
@@ -96,6 +100,7 @@ function followBooKlub(userID, booKlub) {
     return userModel
         .findById(userID)
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec()
         .then(function (user) {
             user.booKlubs.push(booKlub);
@@ -103,14 +108,19 @@ function followBooKlub(userID, booKlub) {
         })
 }
 function unFollowBooKlub(userID, booKlubID) {
+
     return userModel
         .findById(userID)
         .populate('bookShelf')
+        .populate('booKlubs')
         .exec()
         .then(function (user) {
 
+            //console.log(user);
+
             for (var i = 0; i < user.booKlubs.length; i++) {
-                if (user.booKlubs[i]._id === booKlubID) {
+
+                if (user.booKlubs[i]._id == booKlubID) {
                     user.booKlubs.splice(i, 1);
                     break;
                 }

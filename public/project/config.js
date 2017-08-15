@@ -75,6 +75,23 @@
                     user: checkAdmin
                 }
             })
+            //booKlub routes
+            .when("/booKlub", {
+                templateUrl: "./views/booKlub/templates/booKlub-list.view.client.html",
+                controller: "booKlubListController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginBooKlub
+                }
+            })
+            .when("/booKlub/new", {
+                templateUrl: "./views/booKlub/templates/booKlub-new.view.client.html",
+                controller: "booKlubNewController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLogin
+                }
+            })
     }
 
     function checkLogin(userService, $q, $location) {
@@ -129,6 +146,22 @@
     }
 
     function checkLoginDetails(userService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        userService
+            .checkLogin()
+            .then(function (user) {
+                if (user === "0") {
+                    deferred.resolve(null);
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoginBooKlub(userService, $q, $location) {
 
         var deferred = $q.defer();
 

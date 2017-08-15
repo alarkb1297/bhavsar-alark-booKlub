@@ -11,7 +11,9 @@ booKlubModel.deleteBooKlub = deleteBooKlub;
 booKlubModel.findAllBooKlubs = findAllBooKlubs;
 module.exports = booKlubModel;
 
-function createBooKlub(booKlub) {
+function createBooKlub(userID, booKlub) {
+
+    booKlub._creator = userID;
 
     var tempBooKlub;
 
@@ -40,6 +42,6 @@ function deleteBooKlub(booKlubID) {
 }
 
 function findAllBooKlubs() {
-    return booKlubModel.find({});
+    return booKlubModel.find();
 
 }

@@ -29,7 +29,7 @@ body {
 }
 
 .ab-wood-bg {
-    background-image: url("http://bhavsar-alark-webdev.herokuapp.com/project/background/wood-background.jpg");
+    background-image: url("http://bhavsar-alark-booklub.herokuapp.com/project/background/wood-background.jpg");
     background-size: cover;
     background-repeat: repeat-y;
     background-attachment: fixed;
@@ -194,5 +194,9 @@ body {
 
 .slick-prev:before, .slick-next:before {
     color: #ffc100;
+}
+
+.ab-text-align-right {
+    text-align: right;
 }
 

@@ -2,19 +2,20 @@ var app = require("../../express");
 var booKlubModel = require("../model/booKlub/booKlub.model.server");
 
 
-app.post("/api/project/booKlub", createBooKlub);
+app.post("/api/project/booKlub/:userID", createBooKlub);
 app.delete("/api/project/booKlub/:booKlubID", deleteBooKlub);
 app.put("/api/project/booKlub/:booKlubID", updateBooKlub);
 app.get("/api/project/booKlub/:booKlubID", findBooKlubById);
-app.get("/api/project/booKlub/", findAllBooKlubs);
+app.get("/api/project/booKlub", findAllBooKlubs);
 
 
 function createBooKlub(req, response) {
 
     var booKlub = req.body;
+    var userID = req.params.userID;
 
     booKlubModel
-        .createBooKlub(booKlub)
+        .createBooKlub(userID, booKlub)
         .then(function (booKlub) {
             response.json(booKlub);
             return;

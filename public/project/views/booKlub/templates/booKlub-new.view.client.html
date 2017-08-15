@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a href="#!/booKlub">
+        <span class="pull-left glyphicon glyphicon-chevron-left ab-logo-color btn-lg"></span>
+    </a>
+
+    <a ng-click="model.createBooKlub(booKlub)">
+        <span class="pull-right glyphicon glyphicon-ok ab-logo-color btn-lg"></span>
+    </a>
+
+</nav>
+
+<div class="container-fluid">
+
+    <h2 class="ab-text">booKlub New</h2>
+
+
+    <div ng-show="model.confMessage" class="alert alert-success">
+        {{model.confMessage}}
+    </div>
+
+    <div ng-show="model.errorMessage" class="alert alert-danger">
+        {{model.errorMessage}}
+    </div>
+
+
+    <label class="ab-text" for="title">booKlub Title</label>
+    <input name="title"
+           ng-model="booKlub.title"
+           class="form-control"
+           placeholder="Symbolism in The Sun Also Rises"
+           id="title"/>
+
+    <label class="ab-text" for="description">Description</label>
+    <textarea name="description"
+              ng-model="booKlub.description"
+              row="5"
+              class="form-control"
+              placeholder="This booKlub discusses the symbolism in The Sun Also Rises"
+              id="description"></textarea>
+
+    <a class="btn btn-block btn-danger"
+       href="#!/booKlub"
+       role="button">Cancel</a>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+    <div class="navbar-header">
+
+        <a class="navbar-brand"></a>
+
+        <a href="#!/profile">
+            <span class="pull-right glyphicon glyphicon-user ab-white-icons btn-lg"></span>
+        </a>
+
+    </div>
+
+</nav>
+

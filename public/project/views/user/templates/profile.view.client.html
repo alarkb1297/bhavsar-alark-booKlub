@@ -3,7 +3,7 @@
 
     <a class="navbar-brand navbar-left" href="#!">
         <img class="ab-home-navbar-logo"
-             src="http://bhavsar-alark-webdev.herokuapp.com/project/logos/bK-medium-208px.png">
+             src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/bK-medium-208px.png">
     </a>
 
     <div class="pull-right ab-home-navbar-buttons">
@@ -61,7 +61,32 @@
                 </div>
             </div>
             <div class="tab-pane fade in" id="tab2">
-                <h3>This is tab 2</h3>
+                <div class="container-fluid">
+                    <ul class="list-group">
+                        <li class="list-group-item active">
+                            <div class="row">
+                                <div class="col-xs-6">Title</div>
+                                <div ng-show="model.user">
+                                    <div class="col-xs-6 ab-text-align-right">Following</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-repeat="booKlub in model.user.booKlubs" class="list-group-item ab-admin-center-lists">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a href="#!/booKlub/{{booKlub._id}}/edit">
+                                        {{booKlub.title}}
+                                    </a>
+                                </div>
+                                    <div class="col-xs-6 ab-text-align-right">
+                                        <a ng-click="model.unFollowBooKlub(booKlub._id)">
+                                            <button type="button" class="btn navbar-btn btn-danger">Unfollow</button>
+                                        </a>
+                                    </div>
+                                </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="tab-pane fade in" id="tab3">
                 <h3>This is tab 3</h3>

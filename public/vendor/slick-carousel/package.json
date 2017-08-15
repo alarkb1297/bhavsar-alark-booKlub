@@ -10,7 +10,7 @@
         "spec": "latest",
         "type": "tag"
       },
-      "/Users/Alark/Documents/Summer 2 2016/WebDev/Coursework/webdev"
+      "/Users/Alark/Documents/Summer 2 2016/WebDev/Coursework/booKlub"
     ]
   ],
   "_from": "slick-carousel@latest",
@@ -45,7 +45,7 @@
   "_shasum": "51f5489bbb52212542ccbe9f42689f818bd29ed2",
   "_shrinkwrap": null,
   "_spec": "slick-carousel",
-  "_where": "/Users/Alark/Documents/Summer 2 2016/WebDev/Coursework/webdev",
+  "_where": "/Users/Alark/Documents/Summer 2 2016/WebDev/Coursework/booKlub",
   "author": {
     "name": "Ken Wheeler",
     "email": "ken_wheeler@me.com"

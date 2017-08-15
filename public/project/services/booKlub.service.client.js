@@ -17,9 +17,9 @@
         return api;
 
 
-        function createBooKlub(booKlub) {
+        function createBooKlub(userID, booKlub) {
 
-            var url = "/api/project/booKlub";
+            var url = "/api/project/booKlub/" + userID;
 
             return $http.post(url, booKlub)
                 .then(function (response) {
@@ -54,19 +54,19 @@
 
             return $http.get(url)
                 .then(function (response) {
-                    var booKlub = reponse.data;
+                    var booKlub = response.data;
                     return booKlub;
                 });
         }
 
         function findAllBooKlubs() {
 
-            var url = "/api/project/booKlub/";
+            var url = "/api/project/booKlub";
 
             return $http.get(url)
                 .then(function (response) {
-                    var booKlub = reponse.data;
-                    return booKlub;
+                    var booKlubs = response.data;
+                    return booKlubs;
                 });
         }
 
