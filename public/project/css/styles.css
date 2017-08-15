@@ -75,9 +75,17 @@ body {
     margin: auto;
 }
 
+.ab-text-align-right {
+    text-align: right;
+}
+
 .ab-admin-center-lists {
     background-color: rgba(255, 255, 255, 0.85) !important;
     border-color: black !important;
+}
+
+.ab-booKlubs-profile-list {
+    background-image: linear-gradient(to bottom, rgba(255, 193, 0, 0.85) 0, rgba(255, 193, 0, 0.25) 100%) !important;
 }
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
@@ -195,8 +203,3 @@ body {
 .slick-prev:before, .slick-next:before {
     color: #ffc100;
 }
-
-.ab-text-align-right {
-    text-align: right;
-}
-
