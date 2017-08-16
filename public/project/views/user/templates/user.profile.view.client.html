@@ -6,11 +6,11 @@
     </a>
 
     <div class="pull-right ab-home-navbar-buttons">
-        <a ng-show="model.user.isAdmin" href="#!/profile/admin-center">
-            <button type="button" class="btn navbar-btn btn-success">Admin Center</button>
+        <a ng-show="!model.followsUser" ng-click="model.followUser(model.curUser, model.otherUserID)">
+            <button type="button" class="btn navbar-btn btn-default">Follow</button>
         </a>
-        <a href="#!/profile/edit">
-            <button type="button" class="btn navbar-btn btn-success">Edit</button>
+        <a ng-show="model.followsUser" ng-click="model.unFollowUser(model.curUser, model.otherUserID)">
+            <button type="button" class="btn navbar-btn btn-danger">Unfollow</button>
         </a>
     </div>
 
@@ -19,7 +19,7 @@
 <div class="container-fluid">
     <div class="card hovercard">
         <div class="card-background">
-            <img class="card-bkimg" alt="" src={{model.user.google.imgUrl}}>
+            <img class="card-bkimg" alt="" ng-src={{model.user.google.imgUrl}}>
         </div>
         <div ng-show="model.user.google.imgUrl" class="useravatar">
             <img alt="" src={{model.user.google.imgUrl}}>
@@ -31,8 +31,8 @@
             <span class="card-title">{{model.user.firstName}} {{model.user.lastName}}</span>
             <span class="card-title">@{{model.user.username}}</span>
         </div>
-    </div>
 
+    </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group">
         <div class="btn-group" role="group">
             <button type="button" id="bookShelf" class="btn btn-default" href="#tab1" data-toggle="tab"><span
@@ -156,13 +156,11 @@
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-
-    <div class="pull-right ab-home-navbar-buttons">
-        <a ng-click="model.logout()">
-            <button type="button" class="btn navbar-btn btn-danger">Logout</button>
-        </a>
-    </div>
-
+    <a href="#!/profile">
+        <span class="pull-right glyphicon glyphicon-user ab-logo-color btn-lg"></span>
+    </a>
 </nav>
 
+<script type="text/javascript" src="../../../../vendor/slick-carousel/slick/slick.min.js"></script>
 <script type="text/javascript" src="../../../../vendor/slick-carousel/ab-js/ab-carousel-bookShelf.js"></script>
+

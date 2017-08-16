@@ -15,7 +15,6 @@
         model.unFollowBooKlub = unFollowBooKlub;
         model.userFollowsBooKlub = userFollowsBooKlub;
 
-
         function init() {
             booKlubService
                 .findAllBooKlubs()

@@ -15,7 +15,8 @@
             "createBook" : createBook,
             "updateBook" : updateBook,
             "deleteBook" : deleteBook,
-            "findBookById" : findBookById
+            "findBookById" : findBookById,
+            "findAllBooks" : findAllBooks
         };
         return api;
 
@@ -83,6 +84,17 @@
                 .then(function (response) {
                     var book = reponse.data;
                     return book;
+                });
+        }
+
+        function findAllBooks() {
+
+            var url = "/api/project/books";
+
+            return $http.get(url)
+                .then(function (response) {
+                    var books = response.data;
+                    return books;
                 });
         }
 

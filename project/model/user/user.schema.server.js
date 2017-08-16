@@ -15,6 +15,8 @@ var userSchema = mongoose.Schema({
     phone: Number,
     bookShelf: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectBookModel"}],
     booKlubs: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectBooKlubModel"}],
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}],
+    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}],
     isAdmin: {type: Boolean, default: 'false'},
     dateCreated: {type: Date, default: Date.now()}
 

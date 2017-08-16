@@ -5,6 +5,10 @@
              src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/bK-medium-208px.png">
     </a>
 
+    <a href="#!/booKlub" class="pull-right ab-home-navbar-buttons">
+        <button type="button" class="btn navbar-btn btn-warning">booKlubs</button>
+    </a>
+
     <div ng-show="!model.user" class="pull-right ab-home-navbar-buttons">
         <a href="#!/register">
             <button type="button" class="btn navbar-btn btn-primary">Register</button>
@@ -61,23 +65,41 @@
             {{model.errorMessage}}
         </div>
 
-
-        <ul class="list-group">
-            <li ng-repeat="book in model.books" class="list-group-item media">
-                <div class="row">
-                    <div class="col-sm-8 ab-margin-bottom-spacing">
-                        <a class="ab-home-links" href="#!/details/{{book.id}}">
-                            {{book.volumeInfo.title}}
-                        </a>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <a href="#!/details/{{book.id}}">
-                            <img ng-src="{{book.volumeInfo.imageLinks.thumbnail}}" sizes="50%"/>
-                        </a>
-                    </div>
+        <div ng-if="!model.books" class="well tab-content ab-carousel-well-books">
+            <h2 class="ab-text-search">Popular Books</h2>
+            <div class="slick-carousel-search">
+                <div class="slick-carousel-search ab-carousel-div" ng-repeat="book in model.allBooks">
+                    <a href="#!/details/{{book.volumeID}}">
+                        <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
+                        {{book.title}}
+                    </a>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+
+
+        <div ng-if="model.books" class="well tab-content ab-carousel-well-search">
+            <h2 class="ab-text-search">Search Results for "{{model.searchQuery}}"...</h2>
+            <ul class="list-group">
+                <li ng-repeat="book in model.books" class="list-group-item media">
+                    <div class="row">
+                        <div class="col-sm-8 ab-margin-bottom-spacing">
+                            <a class="ab-home-links" href="#!/details/{{book.id}}">
+                                {{book.volumeInfo.title}}
+                            </a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a href="#!/details/{{book.id}}">
+                                <img ng-src="{{book.volumeInfo.imageLinks.thumbnail}}" sizes="50%"/>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript" src="../../../../vendor/slick-carousel/ab-js/ab-carousel-search.js"></script>
+

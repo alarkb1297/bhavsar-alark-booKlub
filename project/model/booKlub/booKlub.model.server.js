@@ -29,7 +29,10 @@ function createBooKlub(userID, booKlub) {
 }
 
 function findBooKlubById(booKlubID) {
-    return booKlubModel.findById(booKlubID);
+    return booKlubModel
+        .findById(booKlubID)
+        .populate('_creator')
+        .exec();
 }
 
 function updateBooKlub(booKlubID, booKlub) {
@@ -42,6 +45,12 @@ function deleteBooKlub(booKlubID) {
 }
 
 function findAllBooKlubs() {
-    return booKlubModel.find();
+    return booKlubModel
+        .find()
+        .populate({
+            path: '_creator',
+            model: 'ProjectUserModel'
+        })
+        .exec();
 
 }

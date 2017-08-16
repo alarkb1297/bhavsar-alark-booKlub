@@ -56,6 +56,12 @@ body {
     color: whitesmoke;
 }
 
+.ab-text-search {
+    color: whitesmoke;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
 .ab-details-search {
     margin-top: 7px;
 }
@@ -86,6 +92,17 @@ body {
 
 .ab-booKlubs-profile-list {
     background-image: linear-gradient(to bottom, rgba(255, 193, 0, 0.85) 0, rgba(255, 193, 0, 0.25) 100%) !important;
+}
+
+.ab-carousel-well-books {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.ab-carousel-well-search {
+    padding-right: 30px;
+    padding-left: 30px;
+    background-image: linear-gradient(to bottom,rgba(232, 232, 232, 0.37) 0,rgba(245, 245, 245, 0.37) 100%) !important;
 }
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {

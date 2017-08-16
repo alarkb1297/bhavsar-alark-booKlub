@@ -28,6 +28,8 @@ app.get("/api/project/checkLogin", checkLogin);
 app.get("/api/project/checkAdmin", checkAdmin);
 app.put("/api/project/users/:userID/booKlub/follow", auth, followBooKlub);
 app.delete("/api/project/users/:userID/booKlub/unfollow/:booKlubID", auth, unFollowBooKlub);
+app.put("/api/project/users/:userID/follow", auth, followUser);
+app.put("/api/project/users/:userID/unfollow", auth, unFollowUser);
 app.get('/project/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 app.get('/project/auth/google/callback',
     passport.authenticate('google', {
@@ -285,6 +287,40 @@ function unFollowBooKlub(req, response) {
             response.send("0");
             return;
         });
+}
+
+function followUser(req, response) {
+
+    var otherUserID = req.params.userID;
+    var curUser = req.body;
+
+    userModel
+        .followUser(curUser,otherUserID)
+        .then(function (user) {
+            response.json(user);
+            return;
+        }, function (err) {
+            response.send("0");
+            return;
+        });
+
+}
+
+function unFollowUser(req, response) {
+
+    var otherUserID = req.params.userID;
+    var curUser = req.body;
+
+    userModel
+        .unFollowUser(curUser,otherUserID)
+        .then(function (user) {
+            response.json(user);
+            return;
+        }, function (err) {
+            response.send("0");
+            return;
+        });
+
 }
 
 

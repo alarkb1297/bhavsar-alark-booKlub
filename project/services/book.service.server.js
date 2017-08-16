@@ -5,6 +5,7 @@ app.post("/api/project/user/:userID/book", createBook);
 app.delete("/api/project/book/:bookID", deleteBook);
 app.put("/api/project/book/:bookID", updateBook);
 app.get("/api/project/book/:bookID", findBookById);
+app.get("/api/project/books", findAllBooks);
 
 
 function createBook(req, response) {
@@ -58,6 +59,20 @@ function findBookById(req, response) {
         .findBookById(bookID)
         .then(function (book) {
             response.json(book);
+            return;
+        }, function (err) {
+            response.sendStatus(404).send(err);
+            return;
+        });
+
+}
+
+function findAllBooks(req, response) {
+
+    bookModel
+        .findAllBooks()
+        .then(function (books) {
+            response.json(books);
             return;
         }, function (err) {
             response.sendStatus(404).send(err);

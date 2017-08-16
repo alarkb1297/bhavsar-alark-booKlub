@@ -21,7 +21,7 @@
                 controller: "detailsController",
                 controllerAs: "model",
                 resolve: {
-                    user: checkLoginDetails
+                    user: checkLoginGeneral
                 }
             })
             .when("/search/:searchOption/:searchQuery", {
@@ -36,7 +36,10 @@
             .when("/login", {
                 templateUrl: "./views/user/templates/login.view.client.html",
                 controller: "loginController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginLogin
+                }
             })
             .when("/register", {
                 templateUrl: "./views/user/templates/register.view.client.html",
@@ -74,6 +77,15 @@
                 resolve: {
                     user: checkAdmin
                 }
+
+            })
+            .when("/user/:userID", {
+                templateUrl: "./views/user/templates/user.profile.view.client.html",
+                controller: "userProfileController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginGeneral
+                }
             })
             //booKlub routes
             .when("/booKlub", {
@@ -81,7 +93,7 @@
                 controller: "booKlubListController",
                 controllerAs: "model",
                 resolve: {
-                    user: checkLoginBooKlub
+                    user: checkLoginGeneral
                 }
             })
             .when("/booKlub/new", {
@@ -145,7 +157,7 @@
         return deferred.promise;
     }
 
-    function checkLoginDetails(userService, $q, $location) {
+    function checkLoginLogin(userService, $q, $location) {
 
         var deferred = $q.defer();
 
@@ -155,13 +167,14 @@
                 if (user === "0") {
                     deferred.resolve(null);
                 } else {
+                    $location.url("/");
                     deferred.resolve(user);
                 }
             });
         return deferred.promise;
     }
 
-    function checkLoginBooKlub(userService, $q, $location) {
+    function checkLoginGeneral(userService, $q, $location) {
 
         var deferred = $q.defer();
 

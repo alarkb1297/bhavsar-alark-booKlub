@@ -15,6 +15,7 @@
 
         model.logout = logout;
         model.unFollowBooKlub = unFollowBooKlub;
+        model.unFollowUser = unFollowUser;
 
         function init() {
         }
@@ -32,6 +33,16 @@
                 .unFollowBooKlub(model.user._id, booKlubID)
                 .then(function (user) {
                     model.errorMessage = "Successfully unfollowed booKlub";
+                    model.confMessage = null;
+                    location.reload();
+                })
+        }
+
+        function unFollowUser(curUser, otherUserID) {
+            userService
+                .unFollowUser(curUser, otherUserID)
+                .then(function (user) {
+                    model.errorMessage = "Successfully unfollowed user";
                     model.confMessage = null;
                     location.reload();
                 })

@@ -27,6 +27,12 @@
                 }
             }
 
+            bookService
+                .findAllBooks()
+                .then(function (books) {
+                    model.allBooks = books;
+                })
+
         }
 
         init();

@@ -23,6 +23,8 @@
             "logout": logout,
             "followBooKlub": followBooKlub,
             "unFollowBooKlub": unFollowBooKlub,
+            "followUser": followUser,
+            "unFollowUser": unFollowUser,
             "removeBookFromBookShelf": removeBookFromBookShelf
         };
         return api;
@@ -156,6 +158,29 @@
                 })
 
         }
+
+        function followUser(curUser, otherUserID) {
+
+            var url = "/api/project/users/" + otherUserID + "/follow";
+
+            return $http.put(url, curUser)
+                .then(function (user) {
+                    return user;
+                })
+
+        }
+
+        function unFollowUser(curUser, otherUserID) {
+
+            var url = "/api/project/users/" + otherUserID + "/unfollow";
+
+            return $http.put(url, curUser)
+                .then(function (user) {
+                    return user;
+                })
+
+        }
+
     }
 
 })();

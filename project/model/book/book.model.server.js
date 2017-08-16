@@ -10,6 +10,7 @@ bookModel.updateBook = updateBook;
 bookModel.findBookByTitle = findBookByTitle;
 bookModel.findBookByVolumeId = findBookByVolumeId;
 bookModel.deleteBook = deleteBook;
+bookModel.findAllBooks = findAllBooks;
 module.exports = bookModel;
 
 function createBook(userID, book) {
@@ -47,4 +48,9 @@ function findBookByTitle(title) {
 
 function deleteBook(bookID) {
     return bookModel.remove({_id: bookID});
+}
+
+function findAllBooks() {
+    return bookModel.find();
+
 }
