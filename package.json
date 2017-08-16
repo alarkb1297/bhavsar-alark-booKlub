@@ -4,6 +4,8 @@
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
   "dependencies": {
+    "angular-animate": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",

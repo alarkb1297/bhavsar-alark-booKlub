@@ -20,6 +20,8 @@
     <!--Angular-->
     <script src="../vendor/angular/angular.js"></script>
     <script src="../vendor/angular/angular-route.js"></script>
+    <script src="../vendor/angular/angular-animate.js"></script>
+    <script src="../vendor/angular/angular-sanitize.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
 
@@ -39,6 +41,7 @@
 
     <!--stylesheets-->
     <link href="./css/styles.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
 
     <!--awesome fonts-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -65,7 +68,6 @@
     <script src="views/booKlub/controllers/booKlub-list.controller.client.js"></script>
     <script src="views/booKlub/controllers/booKlub-new.controller.client.js"></script>
 
-
     <!--services-->
     <script src="services/book.service.client.js"></script>
     <script src="services/user.service.client.js"></script>
@@ -75,7 +77,7 @@
 
 <body class="ab-wood-bg">
 
-    <div ng-view></div>
+    <div id="main-container-fade" ng-view></div>
 
 </body>
 </html>

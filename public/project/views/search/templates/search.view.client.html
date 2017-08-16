@@ -61,14 +61,14 @@
             </div>
         </div>
 
-        <div ng-show="model.errorMessage" class="alert alert-danger">
+        <div ng-show="model.errorMessage" class="alert alert-danger pulse">
             {{model.errorMessage}}
         </div>
 
-        <div ng-if="!model.books" class="well tab-content ab-carousel-well-books">
+        <div ng-if="!model.books" class="well tab-content ab-carousel-well-search">
             <h2 class="ab-text-search">Popular Books</h2>
             <div class="slick-carousel-search">
-                <div class="slick-carousel-search ab-carousel-div" ng-repeat="book in model.allBooks">
+                <div class="ab-carousel-div" ng-repeat="book in model.allBooks">
                     <a href="#!/details/{{book.volumeID}}">
                         <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                         {{book.title}}
@@ -101,5 +101,5 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../../../../vendor/slick-carousel/ab-js/ab-carousel-search.js"></script>
+<script src="../../../../vendor/slick-carousel/ab-js/ab-carousel-search.js"></script>
 
