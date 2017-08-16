@@ -2,7 +2,7 @@
 
     <a class="navbar-brand navbar-left" href="#!">
         <img class="ab-home-navbar-logo"
-             src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/bK-medium-208px.png">
+             src="/project/logos/bK-medium-208px.png">
     </a>
 
     <a href="#!/booKlub" class="pull-right ab-home-navbar-buttons">
@@ -32,7 +32,7 @@
     <div class="ab-search">
 
         <a href="#!/booKlub">
-            <img src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/booKlub-large-hd.png" width="100%">
+            <img src="/project/logos/booKlub-large-hd.png" width="100%">
         </a>
 
         <!--<input placeholder="The Sun Also Rises"-->
@@ -79,7 +79,7 @@
 
 
         <div ng-if="model.books" class="well tab-content ab-carousel-well-search">
-            <h2 class="ab-text-search">Search Results for "{{model.searchQuery}}"...</h2>
+            <h2 class="ab-text-search">Search Results for "{{model.searchResultDisplayText}}"...</h2>
             <ul class="list-group">
                 <li ng-repeat="book in model.books" class="list-group-item media">
                     <div class="row">

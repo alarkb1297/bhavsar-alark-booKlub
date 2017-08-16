@@ -9,6 +9,8 @@ booKlubModel.findBooKlubById = findBooKlubById;
 booKlubModel.updateBooKlub = updateBooKlub;
 booKlubModel.deleteBooKlub = deleteBooKlub;
 booKlubModel.findAllBooKlubs = findAllBooKlubs;
+booKlubModel.addPost = addPost;
+booKlubModel.removePost = removePost;
 module.exports = booKlubModel;
 
 function createBooKlub(userID, booKlub) {
@@ -32,6 +34,7 @@ function findBooKlubById(booKlubID) {
     return booKlubModel
         .findById(booKlubID)
         .populate('_creator')
+        .populate('posts')
         .exec();
 }
 
@@ -52,5 +55,35 @@ function findAllBooKlubs() {
             model: 'ProjectUserModel'
         })
         .exec();
+}
 
+function addPost(booKlubID, post) {
+    return booKlubModel
+        .findById(booKlubID)
+        .populate('posts')
+        .exec()
+        .then(function (booKlub) {
+            booKlub.posts.push(post);
+            return booKlub.save();
+        })
+}
+
+function removePost(booKlubID, postID) {
+    return booKlubModel
+        .findById(booKlubID)
+        .populate('posts')
+        .exec()
+        .then(function (booKlub) {
+
+            for (var i = 0; i < booKlub.posts.length; i++) {
+
+                if (booKlub.posts[i]._id == postID) {
+                    booKlub.posts.splice(i, 1);
+                    break;
+                }
+            }
+
+            return booKlub.save();
+
+        })
 }

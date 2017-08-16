@@ -24,12 +24,18 @@ body {
     text-align: center;
 }
 
+.ab-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+}
+
 .ab-search-box.img {
     margin-bottom: 5px;
 }
 
 .ab-wood-bg {
-    background-image: url("http://bhavsar-alark-booklub.herokuapp.com/project/background/wood-background.jpg");
+    background-image: url("/project/background/wood-background.jpg");
     background-size: cover;
     background-repeat: repeat-y;
     background-attachment: fixed;
@@ -83,6 +89,13 @@ body {
 
 .ab-text-align-right {
     text-align: right;
+}
+
+@media (min-width: 600px) {
+    .ab-btn-container {
+        width: 60%;
+        margin: auto;
+    }
 }
 
 .ab-admin-center-lists {
@@ -229,7 +242,6 @@ body {
 #main-container-fade.ng-enter-active {
     opacity: 1;
 }
-
 
 .fade-in.tab-pane {
     animation: .5s fadeIn ease;

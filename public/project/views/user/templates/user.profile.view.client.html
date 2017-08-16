@@ -2,15 +2,15 @@
 
     <a class="navbar-brand navbar-left" href="#!">
         <img class="ab-home-navbar-logo"
-             src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/bK-medium-208px.png">
+             src="/project/logos/bK-medium-208px.png">
     </a>
 
-    <div class="pull-right ab-home-navbar-buttons">
+    <div ng-if="model.curUser" class="pull-right ab-home-navbar-buttons">
         <a ng-show="!model.followsUser" ng-click="model.followUser(model.curUser, model.otherUserID)">
             <button type="button" class="btn navbar-btn btn-primary">Follow</button>
         </a>
         <a ng-show="model.followsUser" ng-click="model.unFollowUser(model.curUser, model.otherUserID)">
-            <button type="button" class="btn navbar-btn btn-primary">Unfollow</button>
+            <button type="button" class="btn navbar-btn btn-danger">Unfollow</button>
         </a>
     </div>
 

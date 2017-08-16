@@ -23,6 +23,8 @@ module.exports = mongoose;
 require("../project/services/user.service.server");
 require("../project/services/book.service.server");
 require("../project/services/booKlub.service.server");
+require("../project/services/post.service.server");
+require("../project/services/comment.service.server");
 
 var TestSchema = mongoose.Schema({
     message: String

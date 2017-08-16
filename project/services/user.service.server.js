@@ -30,6 +30,8 @@ app.put("/api/project/users/:userID/booKlub/follow", auth, followBooKlub);
 app.delete("/api/project/users/:userID/booKlub/unfollow/:booKlubID", auth, unFollowBooKlub);
 app.put("/api/project/users/:userID/follow", auth, followUser);
 app.put("/api/project/users/:userID/unfollow", auth, unFollowUser);
+
+
 app.get('/project/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 app.get('/project/auth/google/callback',
     passport.authenticate('google', {

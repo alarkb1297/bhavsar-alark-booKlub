@@ -2,13 +2,13 @@
 
     <a class="navbar-brand navbar-left" href="#!">
         <img class="ab-home-navbar-logo"
-             src="http://bhavsar-alark-booklub.herokuapp.com/project/logos/bK-medium-208px.png">
+             src="/project/logos/bK-medium-208px.png">
     </a>
 
 
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid ab-container well tab-content ab-carousel-well-search">
 
     <div ng-show="model.errorMessage" class="alert pulse alert-danger">
         {{model.errorMessage}}
@@ -16,28 +16,28 @@
 
     <h2 class="ab-text">Register</h2>
 
-    <label class="ab-text" for="username">Username</label>
+    <label class="ab-text-align-left" for="username">Username</label>
     <input name="username"
            ng-model="user.username"
            class="form-control"
            placeholder="username"
            id="username"/>
 
-    <label class="ab-text" for="firstName">First Name</label>
+    <label class="ab-text-align-left" for="firstName">First Name</label>
     <input name="firstName"
            ng-model="user.firstName"
            class="form-control"
            placeholder="Charlie"
            id="firstName"/>
 
-    <label class="ab-text" for="lastName">Last Name</label>
+    <label class="ab-text-align-left" for="lastName">Last Name</label>
     <input name="lastName"
            ng-model="user.lastName"
            class="form-control"
            placeholder="Charlie"
            id="lastName"/>
 
-    <label class="ab-text" for="password">Password</label>
+    <label class="ab-text-align-left" for="password">Password</label>
     <input name="password"
            type="password"
            ng-model="user.password"
@@ -45,7 +45,7 @@
            placeholder="password"
            id="password"/>
 
-    <label class="ab-text" for="password2">Verify Password</label>
+    <label class="ab-text-align-left" for="password2">Verify Password</label>
     <input name="password2"
            type="password"
            ng-model="user.password2"
@@ -53,11 +53,13 @@
            placeholder="verify password"
            id="password2"/>
 
-    <a class="btn btn-block btn-primary"
-       ng-click="model.registerUser(user)"
-       role="button">Register</a>
+    <div class="ab-btn-container">
+        <a class="btn btn-block btn-primary"
+           ng-click="model.registerUser(user)"
+           role="button">Register</a>
 
-    <a class="btn btn-block btn-danger"
-       href="#!/login"
-       role="button">Cancel</a>
+        <a class="btn btn-block btn-danger"
+           href="#!/login"
+           role="button">Cancel</a>
+    </div>
 </div>

@@ -15,6 +15,7 @@
 
         model.searchOption = $routeParams.searchOption;
         model.searchQuery = $routeParams.searchQuery;
+        model.searchResultDisplayText = model.searchQuery;
 
         function init() {
 

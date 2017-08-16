@@ -10,7 +10,7 @@
 
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid ab-container well tab-content ab-carousel-well-search">
 
     <h2 class="ab-text">Edit User - {{model.user.username}}</h2>
 
@@ -100,7 +100,9 @@
     </ul>
 
 
-    <a class="btn btn-block btn-danger" ng-click="model.deleteUser(model.userID)" role="button">Unregister</a>
+    <div class="ab-btn-container">
+        <a class="btn btn-block btn-danger" ng-click="model.deleteUser(model.userID)" role="button">Unregister</a>
+    </div>
 
 </div>
 
