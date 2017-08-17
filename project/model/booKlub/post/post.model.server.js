@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-var postSchema = require("./post.schema.server");
-var postModel = require("ProjectPostModel", postSchema);
 var booKlubSchema = require("../booKlub.schema.server");
 var booKlubModel = mongoose.model("ProjectBooKlubModel", booKlubSchema);
+var postSchema = require("./post.schema.server");
+var postModel = mongoose.model("ProjectPostModel", postSchema);
 
 postModel.createPost = createPost;
 postModel.findPostById = findPostById;

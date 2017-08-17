@@ -1,7 +1,6 @@
 var app = require("../../express");
 var postModel = require("../model/booKlub/post/post.model.server");
 
-
 app.post("/api/project/user/:userID/booKlub/:booKlubID", createPost);
 app.delete("/api/project/booKlub/post/:postID", deletePost);
 app.put("/api/project/booKlub/post/:postID", updatePost);

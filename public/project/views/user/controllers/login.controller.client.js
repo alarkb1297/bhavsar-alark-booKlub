@@ -29,11 +29,10 @@
                 .login(user.username, user.password)
                 .then(function (_user) {
 
-                    if (_user === null) {
+                    if (!_user) {
                         model.errorMessage = "User Not Found";
                     }
                     else {
-                        $rootScope.currentUser = _user;
                         $location.url("/profile");
                     }
                 })

@@ -67,7 +67,8 @@
 
         <div ng-if="!model.books" class="well tab-content ab-carousel-well-search">
             <h2 class="ab-text-search">Popular Books</h2>
-            <div class="slick-carousel-search">
+            <i class="fa fa-circle-o-notch fa-spin ab-loading-spinner" ng-show="model.showSpinner"></i>
+            <div class="slick-carousel-search" ng-hide="model.showSpinner">
                 <div class="ab-carousel-div" ng-repeat="book in model.allBooks">
                     <a href="#!/details/{{book.volumeID}}">
                         <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
@@ -80,7 +81,8 @@
 
         <div ng-if="model.books" class="well tab-content ab-carousel-well-search">
             <h2 class="ab-text-search">Search Results for "{{model.searchResultDisplayText}}"...</h2>
-            <ul class="list-group">
+            <i class="fa fa-circle-o-notch fa-spin ab-loading-spinner" ng-show="model.showSpinner"></i>
+            <ul class="list-group"  ng-hide="model.showSpinner">
                 <li ng-repeat="book in model.books" class="list-group-item media">
                     <div class="row">
                         <div class="col-sm-8 ab-margin-bottom-spacing">
@@ -100,6 +102,4 @@
         </div>
     </div>
 </div>
-
-<script src="../../../../vendor/slick-carousel/ab-js/ab-carousel-search.js"></script>
 

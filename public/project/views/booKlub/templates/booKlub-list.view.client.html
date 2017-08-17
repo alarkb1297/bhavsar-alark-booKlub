@@ -50,9 +50,12 @@
                 </div>
 
                 <div class="col-xs-4 col-md-2 ab-text-align-right">
-                    <a href="#!/user/{{booKlub._creator._id}}">
+                    <a ng-if="booKlub._creator" href="#!/user/{{booKlub._creator._id}}">
                         @{{booKlub._creator.username}}
                     </a>
+                    <p ng-if="!booKlub._creator">
+                        User Unavailable
+                    </p>
                 </div>
 
                 <div ng-if="model.user">

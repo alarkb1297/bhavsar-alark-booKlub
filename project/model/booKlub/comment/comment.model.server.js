@@ -1,16 +1,14 @@
 var mongoose = require('mongoose');
 var commentSchema = require("./comment.schema.server");
-var commentModel = require("ProjectCommentModel", commentSchema);
+var commentModel = mongoose.model("ProjectCommentModel", commentSchema);
 var postSchema = require("../post/post.schema.server");
-var postModel = require("ProjectPostModel", postSchema);
-var booKlubSchema = require("../booKlub.schema.server");
-var booKlubModel = mongoose.model("ProjectBooKlubModel", booKlubSchema);
+var postModel = mongoose.model("ProjectPostModel", postSchema);
 
 commentModel.createComment = createComment;
 commentModel.findCommentById = findCommentById;
 commentModel.updateComment = updateComment;
 commentModel.deleteComment = deleteComment;
-commentModel.findAllCommentsForPosts = findAllCommentsForPosts;
+commentModel.findAllCommentsForPost = findAllCommentsForPost;
 module.exports = commentModel;
 
 function createComment(userID, postID, comment) {

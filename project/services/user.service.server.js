@@ -1,8 +1,6 @@
 var app = require("../../express");
 var userModel = require("../model/user/user.model.server");
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 var googleConfig = {
@@ -13,10 +11,13 @@ var googleConfig = {
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
+var bcrypt = require("bcrypt-nodejs");
+
 var auth = authorized;
 //html handlers
 app.get("/api/project/user", findUser);
-app.post("/api/project/login", passport.authenticate('local'), login);
+//app.post("/api/project/login", passport.authenticate('local'), login);
+app.post("/api/project/login", login);
 app.post("/api/project/user", registerUser);
 app.put("/api/project/user/:userID", auth, updateUser);
 app.delete("/api/project/user/:userID", auth, deleteUser);
@@ -30,8 +31,6 @@ app.put("/api/project/users/:userID/booKlub/follow", auth, followBooKlub);
 app.delete("/api/project/users/:userID/booKlub/unfollow/:booKlubID", auth, unFollowBooKlub);
 app.put("/api/project/users/:userID/follow", auth, followUser);
 app.put("/api/project/users/:userID/unfollow", auth, unFollowUser);
-
-
 app.get('/project/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 app.get('/project/auth/google/callback',
     passport.authenticate('google', {
@@ -91,22 +90,34 @@ function authorized(req, res, next) {
 };
 
 function login(req, response) {
-    var user = req.user;
-    response.json(user);
-}
 
-function localStrategy(username, password, done) {
-    userModel.findUserByCredentials(username, password)
+    var username = req.body.username;
+    var password = req.body.password;
+
+    userModel
+        .findUserByUsername(username)
         .then(function (user) {
+
             if (!user) {
-                return done(null, false);
+                response.send(null);
+                return;
             }
 
-            return done(null, user);
+            bcrypt.compare(password, user.password, function(err, res) {
+                if (res) {
+                    req.login(user, function (nothing) {
+                        response.send(user);
+                        return;
+                    })
+                } else {
+                    response.send(null);
+                    return;
+                }
+            });
 
         }, function (err) {
             if (err) {
-                return done(err);
+                response.send(err);
             }
         });
 }
@@ -161,12 +172,17 @@ function registerUser(req, response) {
 
     var user = req.body;
 
-    userModel
-        .createUser(user)
-        .then(function (user) {
-            response.json(user);
-            return;
-        })
+    bcrypt.hash(user.password, null, null, function(err, hash) {
+
+        user.password = hash;
+
+        userModel
+            .createUser(user)
+            .then(function (user) {
+                response.json(user);
+                return;
+            })
+    });
 
 }
 

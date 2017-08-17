@@ -5,12 +5,14 @@
         .controller("userProfileController", userProfileController);
 
 
-    function userProfileController(userService, $location, user, $routeParams) {
+    function userProfileController(userService, $location, user, $routeParams, $timeout) {
 
         var model = this;
 
         model.curUser = user;
         model.otherUserID = $routeParams.userID;
+
+        setTabs();
 
         model.curUserFollowsOtherUser = curUserFollowsOtherUser;
         model.followUser = followUser;
@@ -26,6 +28,7 @@
                     .findUserById(model.otherUserID)
                     .then(function (otherUser) {
                         model.bookShelf = otherUser.bookShelf;
+                        $timeout(setCarousel);
                         model.booKlubs = otherUser.booKlubs;
                         model.following = otherUser.following;
                         model.followers = otherUser.followers;
@@ -78,6 +81,56 @@
                     model.confMessage = null;
                     model.followsUser = false;
                 })
+        }
+
+        function setCarousel() {
+            $(document).ready(function () {
+                $('.slick-carousel').not('.slick-initialized').slick({
+                    dots: true,
+                    autoplay: true,
+                    swipeToSlide: true,
+                    centerPadding: '60px',
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
+            model.showSpinner = false;
+        }
+
+        function setTabs() {
+            $(document)
+                .ready(function() {
+                    $(".btn-pref .btn").click(function () {
+                        $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+                        // $(".tab").addClass("active"); // instead of this do the below
+                        $(this).removeClass("btn-default").addClass("btn-primary");
+                    });
+                });
         }
     }
 

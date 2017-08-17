@@ -4,7 +4,7 @@
         .module("booKlub")
         .controller("searchController", searchController);
 
-    function searchController(bookService, $routeParams, $location, user) {
+    function searchController(bookService, $routeParams, $location, user, $timeout) {
 
         var model = this;
 
@@ -12,6 +12,7 @@
         model.searchBookByAuthor = searchBookByAuthor;
 
         model.user = user;
+        model.showSpinner = true;
 
         model.searchOption = $routeParams.searchOption;
         model.searchQuery = $routeParams.searchQuery;
@@ -32,6 +33,7 @@
                 .findAllBooks()
                 .then(function (books) {
                     model.allBooks = books;
+                    $timeout(setCarousel);
                 })
 
         }
@@ -83,6 +85,44 @@
             } else {
                 model.errorMessage = "Please enter an author value";
             }
+        }
+
+        function setCarousel() {
+            $(document).ready(function () {
+                $('.slick-carousel-search').not('.slick-initialized').slick({
+                    dots: false,
+                    autoplay: true,
+                    swipeToSlide: true,
+                    centerPadding: '60px',
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                infinite: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            });
+            model.showSpinner = false;
         }
     }
 })();

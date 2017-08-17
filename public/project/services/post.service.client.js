@@ -2,9 +2,9 @@
 
     angular
         .module("booKlub")
-        .factory("booKlubService", booKlubService);
+        .factory("postService", postService);
 
-    function booKlubService($http) {
+    function postService($http) {
 
         var api = {
             "createPost" : createPost,
