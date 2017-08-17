@@ -9,6 +9,7 @@ booKlubModel.findBooKlubById = findBooKlubById;
 booKlubModel.updateBooKlub = updateBooKlub;
 booKlubModel.deleteBooKlub = deleteBooKlub;
 booKlubModel.findAllBooKlubs = findAllBooKlubs;
+booKlubModel.findAllBooKlubsForCreator = findAllBooKlubsForCreator;
 booKlubModel.addPost = addPost;
 booKlubModel.removePost = removePost;
 module.exports = booKlubModel;
@@ -35,6 +36,12 @@ function findBooKlubById(booKlubID) {
         .findById(booKlubID)
         .populate('_creator')
         .populate('posts')
+        .exec();
+}
+
+function findAllBooKlubsForCreator(userID) {
+    return booKlubModel
+        .find({_creator : userID})
         .exec();
 }
 

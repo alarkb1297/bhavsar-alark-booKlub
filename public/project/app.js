@@ -1,5 +1,5 @@
 (function () {
 
     angular
-        .module("booKlub", ["ngRoute", "ngAnimate"]);
+        .module("booKlub", ["ngRoute", "ngAnimate", "textAngular"]);
 })();

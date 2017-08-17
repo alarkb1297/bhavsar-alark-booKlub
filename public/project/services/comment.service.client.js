@@ -18,6 +18,10 @@
 
         function createComment(userID, postID, comment) {
 
+            console.log(userID);
+            console.log(postID);
+            console.log(comment);
+
             var url = "/api/project/user/" + userID + "/booKlub/post/" + postID + "/comment";
 
             return $http.post(url, comment)

@@ -5,13 +5,15 @@
         .controller("profileController", profileController);
 
 
-    function profileController(userService, $location, user, $timeout) {
+    function profileController(userService, $location, user, $timeout, booKlubService) {
 
         var model = this;
 
         model.user = user;
-        model.userId = user._id;
+        model.userID = user._id;
         model.showSpinner = true;
+        model.booKlubs = model.user.booKlubs;
+        model.following = model.user.following;
         
         model.logout = logout;
         model.unFollowBooKlub = unFollowBooKlub;
@@ -38,7 +40,11 @@
                 .then(function (user) {
                     model.errorMessage = "Successfully unfollowed booKlub";
                     model.confMessage = null;
-                    location.reload();
+
+                    return userService.findUserById(model.userID);
+                })
+                .then(function (user) {
+                    model.booKlubs = user.booKlubs;
                 })
         }
 
@@ -48,7 +54,10 @@
                 .then(function (user) {
                     model.errorMessage = "Successfully unfollowed user";
                     model.confMessage = null;
-                    location.reload();
+                    return userService.findUserById(model.userID);
+                })
+                .then(function (user) {
+                    model.following = user.following;
                 })
         }
 

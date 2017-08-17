@@ -2,62 +2,78 @@
 
     angular
         .module("booKlub")
-        .controller("booKlubListController", booKlubListController);
+        .controller("booKlubBlogController", booKlubBlogController);
 
 
-    function booKlubListController($routeParams, user, userService, postService, commentService) {
+    function booKlubBlogController($routeParams, user, postService, commentService, $sce, booKlubService) {
 
         var model = this;
 
         model.user = user;
         model.booKlubID = $routeParams.booKlubID;
 
+        model.createPost = createPost;
+        model.createComment = createComment;
+        model.trustHtmlContent = trustHtmlContent;
+
 
         function init() {
-            booKlubService
-                .findAllBooKlubs()
-                .then(function (booKlubs) {
-                    model.booKlubs = booKlubs;
+
+            postService
+                .findAllPostsForBooKlub(model.booKlubID)
+                .then(function (posts) {
+                    model.posts = posts;
                 });
+
+            booKlubService
+                .findBooKlubById(model.booKlubID)
+                .then(function(booKlub) {
+                    model.booKlub = booKlub;
+                });
+
+            if (user) {
+                model.user = user;
+                model.userID = model.user._id;
+            }
         }
 
         init();
 
-        function followBooKlub(booKlub) {
-            userService
-                .followBooKlub(model.user._id, booKlub)
-                .then(function (user) {
-                    model.confMessage = "Successfully followed booKlub";
-                    model.errorMessage = null;
-                    location.reload();
-                })
-        }
 
-        function unFollowBooKlub(booKlubID) {
-            userService
-                .unFollowBooKlub(model.user._id, booKlubID)
-                .then(function (user) {
-                    model.errorMessage = "Successfully unfollowed booKlub";
-                    model.confMessage = null;
-                    location.reload();
-                })
-        }
+        function createPost(post) {
 
-        function userFollowsBooKlub(booKlub) {
-
-            if (model.user) {
-                var booKlubs = model.user.booKlubs;
-
-                for (var i = 0; i < booKlubs.length; i++) {
-                    if (booKlubs[i]._id == booKlub._id) {
-                        return true;
-                        break;
-                    }
-                }
+            if (user) {
+                postService
+                    .createPost(model.userID, model.booKlubID, post)
+                    .then(function (post) {
+                        model.confMessage = "Successfully created post";
+                        return postService.findAllPostsForBooKlub(model.booKlubID);
+                    })
+                    .then(function (posts) {
+                        model.posts = posts;
+                    })
             } else {
-                return false;
+                location.url("/login")
             }
         }
+
+        function createComment(comment, postID) {
+
+            commentService
+                .createComment(model.userID, postID, comment)
+                .then(function (comment) {
+                    return postService
+                        .findAllPostsForBooKlub(model.booKlubID);
+                })
+                .then(function (posts) {
+                    model.posts = posts;
+                })
+        }
+
+        function trustHtmlContent(htmlContent) {
+            return $sce.trustAsHtml(htmlContent);
+        }
+
     }
 
 })();

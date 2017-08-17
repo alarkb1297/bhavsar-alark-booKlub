@@ -7,6 +7,8 @@ app.delete("/api/project/booKlub/:booKlubID", deleteBooKlub);
 app.put("/api/project/booKlub/:booKlubID", updateBooKlub);
 app.get("/api/project/booKlub/:booKlubID", findBooKlubById);
 app.get("/api/project/booKlub", findAllBooKlubs);
+app.get("/api/project/user/:userID/booKlubs", findAllBooKlubsForCreator);
+
 
 
 function createBooKlub(req, response) {
@@ -71,6 +73,22 @@ function findAllBooKlubs(req, response) {
 
     booKlubModel
         .findAllBooKlubs()
+        .then(function (booKlubs) {
+            response.json(booKlubs);
+            return;
+        }, function (err) {
+            response.sendStatus(404).send(err);
+            return;
+        });
+
+}
+
+function findAllBooKlubsForCreator(req, response) {
+
+    var userID = req.params.userID;
+
+    booKlubModel
+        .findAllBooKlubsForUser(userID)
         .then(function (booKlubs) {
             response.json(booKlubs);
             return;

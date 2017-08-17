@@ -34,7 +34,6 @@ function findCommentById(commentID) {
         .findById(commentID)
         .populate('_post')
         .populate('_user')
-        .populate('dateCreated')
         .exec();
 }
 
@@ -59,15 +58,8 @@ function findAllCommentsForPost(postID) {
     return commentModel
         .find({_post: postID})
         .populate({
-            path: '_post',
-            model: 'ProjectPostModel'
-        })
-        .populate({
             path: '_user',
             model: 'ProjectUserModel'
-        })
-        .populate({
-            path: 'dateCreated'
         })
         .exec()
 }

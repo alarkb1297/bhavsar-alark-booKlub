@@ -98,6 +98,20 @@ body {
     height: 50px;
 }
 
+.well.ab-well-post {
+    border-color: #ff6e37;
+    background-color: rgba(245, 245, 245, 0);
+    padding-right: 30px;
+    padding-left: 30px;
+    background-image: linear-gradient(to bottom, rgba(232, 232, 232, 0.37) 0, rgba(245, 245, 245, 0.37) 100%) !important;
+}
+
+.well.ab-well-comment {
+    border-color: #c10015;
+    background-color: rgba(245, 245, 245, 0);
+    background-image: linear-gradient(to bottom, rgba(232, 232, 232, 0.37) 0, rgba(245, 245, 245, 0.37) 100%) !important;
+}
+
 @media (min-width: 600px) {
     .ab-btn-container {
         width: 60%;
@@ -123,6 +137,15 @@ body {
     padding-right: 30px;
     padding-left: 30px;
     background-image: linear-gradient(to bottom, rgba(232, 232, 232, 0.37) 0, rgba(245, 245, 245, 0.37) 100%) !important;
+}
+
+.ab-well-booKlub-heading {
+    padding-right: 30px;
+    padding-left: 30px;
+    background-image: linear-gradient(to bottom, rgba(255, 193, 0, 0.22) 0, rgba(255, 193, 0, 0) 100%) !important;
+    border-color: rgba(0, 0, 0, 0) !important;
+    box-shadow: none;
+    text-align: center;
 }
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {

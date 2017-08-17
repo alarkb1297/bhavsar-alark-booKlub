@@ -12,7 +12,8 @@
             "updateBooKlub" : updateBooKlub,
             "deleteBooKlub" : deleteBooKlub,
             "findBooKlubById" : findBooKlubById,
-            "findAllBooKlubs" : findAllBooKlubs
+            "findAllBooKlubs" : findAllBooKlubs,
+            "findAllBooKlubsForCreator": findAllBooKlubsForCreator
         };
         return api;
 
@@ -69,6 +70,17 @@
                     return booKlubs;
                 });
         }
+        function findAllBooKlubsForCreator(userID) {
+
+            var url = "/api/project/user/" + userID + "/booKlubs";
+
+            return $http.get(url)
+                .then(function (response) {
+                    var booKlubs = response.data;
+                    return booKlubs;
+                });
+        }
+
 
     }
 })();

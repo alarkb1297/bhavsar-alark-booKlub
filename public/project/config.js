@@ -104,6 +104,14 @@
                     user: checkLogin
                 }
             })
+            .when("/booKlub/blog/:booKlubID", {
+                templateUrl: "./views/booKlub/templates/booKlub-blog.view.client.html",
+                controller: "booKlubBlogController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginGeneral
+                }
+            })
     }
 
     function checkLogin(userService, $q, $location) {

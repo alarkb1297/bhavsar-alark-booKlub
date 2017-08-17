@@ -60,7 +60,7 @@
 
         function findAllPostsForBooKlub(booKlubID) {
 
-            var url = "/api/project/booKlub/" + booKlubID + "/post";
+            var url = "/api/project/booKlub/" + booKlubID + "/posts";
 
             return $http.get(url)
                 .then(function (response) {

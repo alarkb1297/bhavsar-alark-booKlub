@@ -9,13 +9,17 @@
 
         var model = this;
 
-        model.user = user;
-
         model.followBooKlub = followBooKlub;
         model.unFollowBooKlub = unFollowBooKlub;
         model.userFollowsBooKlub = userFollowsBooKlub;
 
         function init() {
+
+            if (user) {
+                model.user = user;
+                model.userID = model.user._id;
+            }
+
             booKlubService
                 .findAllBooKlubs()
                 .then(function (booKlubs) {
@@ -26,12 +30,16 @@
         init();
 
         function followBooKlub(booKlub) {
+
             userService
                 .followBooKlub(model.user._id, booKlub)
                 .then(function (user) {
                     model.confMessage = "Successfully followed booKlub";
                     model.errorMessage = null;
-                    location.reload();
+                    return userService.findUserById(model.userID);
+                })
+                .then(function (user) {
+                    model.user = user;
                 })
         }
 
@@ -41,7 +49,11 @@
                 .then(function (user) {
                     model.errorMessage = "Successfully unfollowed booKlub";
                     model.confMessage = null;
-                    location.reload();
+                    return userService.findUserById(model.userID);
+                })
+                .then(function (user) {
+
+                    model.user = user;
                 })
         }
 

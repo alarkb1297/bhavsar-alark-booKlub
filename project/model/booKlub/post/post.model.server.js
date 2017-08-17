@@ -15,7 +15,7 @@ module.exports = postModel;
 
 function createPost(userID, booKlubID, post) {
 
-    post._userID = userID;
+    post._user = userID;
     post._booKlub = booKlubID;
 
     var tempPost;
@@ -37,6 +37,7 @@ function findPostById(postID) {
         .populate('_booKlub')
         .populate('_user')
         .populate('dateCreated')
+        .populate('comments')
         .exec();
 }
 
@@ -60,17 +61,18 @@ function findAllPostsForBooKlub(booKlubID) {
     return postModel
         .find({_booKlub: booKlubID})
         .populate({
-            path: '_booKlub',
-            model: 'ProjectBooKlubModel'
-        })
-        .populate({
             path: '_user',
             model: 'ProjectUserModel'
         })
         .populate({
-            path: 'dateCreated'
+            path: 'comments',
+            model: 'ProjectCommentModel'
         })
-        .exec()
+        .populate({
+            path: '_booKlub',
+            model: 'ProjectBooKlubModel'
+        })
+        .exec();
 }
 
 function addComment(postID, comment) {

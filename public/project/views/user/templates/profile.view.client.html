@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="booKlub in model.user.booKlubs" class="list-group-item ab-admin-center-lists">
+                        <li ng-repeat="booKlub in model.booKlubs" class="list-group-item ab-admin-center-lists">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/booKlub/{{booKlub._id}}/edit">
@@ -112,7 +112,7 @@
                                 <div class="col-xs-6 ab-text-align-right">Unfollow</div>
                             </div>
                         </li>
-                        <li ng-repeat="following in model.user.following" class="list-group-item ab-admin-center-lists">
+                        <li ng-repeat="following in model.following" class="list-group-item ab-admin-center-lists">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/user/{{following._id}}">

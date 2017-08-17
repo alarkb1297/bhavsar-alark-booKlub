@@ -5,7 +5,7 @@ app.post("/api/project/user/:userID/booKlub/:booKlubID", createPost);
 app.delete("/api/project/booKlub/post/:postID", deletePost);
 app.put("/api/project/booKlub/post/:postID", updatePost);
 app.get("/api/project/booKlub/post/:postID", findByPostId);
-app.get("/api/project/booKlub/:booKlubID/post", findAllPostsForBooKlub);
+app.get("/api/project/booKlub/:booKlubID/posts", findAllPostsForBooKlub);
 
 
 function createPost(req, response) {

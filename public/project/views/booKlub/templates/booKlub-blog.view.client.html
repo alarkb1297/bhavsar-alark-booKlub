@@ -4,8 +4,63 @@
         <span class="pull-left glyphicon glyphicon-chevron-left ab-logo-color btn-lg"></span>
     </a>
 
-    <a ng-click="model.createPost(post)">
-        <span class="pull-right glyphicon glyphicon-plus ab-logo-color btn-lg"></span>
-    </a>
+    <div ng-show="model.user">
+        <a ng-click="model.createPost(post)">
+            <span class="pull-right glyphicon glyphicon-ok ab-logo-color btn-lg"></span>
+        </a>
+    </div>
 
+    <div ng-show="!model.user">
+        <a href="#!/login">
+            <button type="button" class="ab-home-navbar-buttons pull-right btn navbar-btn btn-success">
+                Login to Contribute!
+            </button>
+        </a>
+    </div>
 </nav>
+
+<div class="container-fluid ab-container well ab-well-booKlub-heading">
+    <h1 class="ab-text">{{model.booKlub.title}}</h1>
+    <h4 class="ab-text">{{model.booKlub.description}}</h4>
+</div>
+
+<div class="container-fluid ab-container well ab-carousel-well-search" ng-show="model.user">
+    <label class="ab-text" for="postTitle">Title</label>
+    <input name="postTitle"
+           class="form-control"
+           ng-model="post.title"
+           placeholder="Post Title"
+           id="postTitle"/>
+
+    <div class="ab-margin-bottom-spacing"
+         ng-model="post.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+</div>
+
+<div>
+    <div class="container-fluid ab-container ab-well-post well" ng-repeat="post in model.posts">
+        <h2 class="ab-text">{{post.title}}</h2>
+        <h6 class="ab-text">OP @{{post._user.username}} : {{post.dateCreated | date : "short"}} says...</h6>
+        <div class="ab-text" ng-bind-html="model.trustHtmlContent(post.text)"></div>
+        <div class="ab-well-comment well ab-text" ng-repeat="comment in post.comments">
+            @{{comment._user.username}} : {{comment.dateCreated | date : "short"}} replied...
+            {{comment.text}}
+        </div>
+        <div class="input-group ab-btn-container" ng-if="model.user">
+            <input type="text"
+                   ng-model="commentReply.text"
+                   class="form-control"
+                   placeholder="@{{model.user.username}} replies...">
+            <span class="input-group-btn">
+                <button class="btn btn-danger" type="button" ng-click="model.createComment(commentReply, post._id)">
+                    Comment
+                </button>
+            </span>
+        </div>
+    </div>
+
+</div>
