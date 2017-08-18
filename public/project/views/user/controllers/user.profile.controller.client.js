@@ -70,6 +70,19 @@
                     model.confMessage = "User successfully followed";
                     model.errorMessage = null;
                     model.followsUser = true;
+                    return userService
+                        .findUserById(model.otherUserID);
+                })
+                .then(function (otherUser) {
+                    model.bookShelf = otherUser.bookShelf;
+                    $timeout(setCarousel);
+                    model.booKlubs = otherUser.booKlubs;
+                    model.following = otherUser.following;
+                    model.followers = otherUser.followers;
+                    model.user = otherUser;
+                    if (model.curUser) {
+                        model.curUserFollowsOtherUser(model.curUser);
+                    }
                 })
         }
 

@@ -43,8 +43,6 @@
 
         function createPost(post) {
 
-            console.log(post);
-
             if (!post || !post.title || !post.text) {
                 model.confMessage = null;
                 model.errorMessage = "Blank fields detected"
