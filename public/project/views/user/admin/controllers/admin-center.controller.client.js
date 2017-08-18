@@ -5,7 +5,7 @@
         .controller("adminCenterController", adminCenterController);
 
 
-    function adminCenterController(userService, $location, user) {
+    function adminCenterController(userService, $location, user, booKlubService) {
 
         var model = this;
 

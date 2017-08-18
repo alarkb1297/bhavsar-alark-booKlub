@@ -75,14 +75,12 @@
                 })
                 .then(function (otherUser) {
                     model.bookShelf = otherUser.bookShelf;
-                    $timeout(setCarousel);
                     model.booKlubs = otherUser.booKlubs;
                     model.following = otherUser.following;
                     model.followers = otherUser.followers;
                     model.user = otherUser;
-                    if (model.curUser) {
-                        model.curUserFollowsOtherUser(model.curUser);
-                    }
+                    $timeout(setCarousel);
+
                 })
         }
 
@@ -93,6 +91,17 @@
                     model.errorMessage = "User successfully unfollowed";
                     model.confMessage = null;
                     model.followsUser = false;
+                    return userService
+                        .findUserById(model.otherUserID);
+                })
+                .then(function (otherUser) {
+                    model.bookShelf = otherUser.bookShelf;
+                    model.booKlubs = otherUser.booKlubs;
+                    model.following = otherUser.following;
+                    model.followers = otherUser.followers;
+                    model.user = otherUser;
+                    $timeout(setCarousel);
+
                 })
         }
 
