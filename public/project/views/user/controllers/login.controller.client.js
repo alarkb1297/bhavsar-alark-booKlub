@@ -25,6 +25,11 @@
                 return;
             }
 
+            if (!user.username || !username.password) {
+                model.errorMessage = "Blank fields detected";
+                return;
+            }
+
             userService
                 .login(user.username, user.password)
                 .then(function (_user) {

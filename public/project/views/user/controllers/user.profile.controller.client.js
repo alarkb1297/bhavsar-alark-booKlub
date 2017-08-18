@@ -9,8 +9,8 @@
 
         var model = this;
 
-        model.curUser = user;
         model.otherUserID = $routeParams.userID;
+        model.curUser = user;
 
         setTabs();
 
