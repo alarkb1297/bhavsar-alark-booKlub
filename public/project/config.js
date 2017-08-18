@@ -112,6 +112,14 @@
                     user: checkLoginGeneral
                 }
             })
+            .when("/booKlub/blog/:booKlubID/post/edit/:postID", {
+                templateUrl: "./views/booKlub/templates/booKlub-post-edit.view.client.html",
+                controller: "postEditController",
+                controllerAs: "model",
+                resolve: {
+                    user: checkLoginBooKlub
+                }
+            })
     }
 
     function checkLogin(userService, $q, $location) {
@@ -158,6 +166,23 @@
                 if (user === "0") {
                     deferred.resolve(null);
                     $location.url("/");
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkLoginBooKlub(userService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        userService
+            .checkLogin()
+            .then(function (user) {
+                if (user === "0") {
+                    deferred.resolve(null);
+                    $location.url("/booKlub");
                 } else {
                     deferred.resolve(user);
                 }

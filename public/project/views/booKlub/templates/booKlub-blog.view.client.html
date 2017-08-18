@@ -22,6 +22,14 @@
 <div class="container-fluid ab-container well ab-well-booKlub-heading">
     <h1 class="ab-text">{{model.booKlub.title}}</h1>
     <h4 class="ab-text">{{model.booKlub.description}}</h4>
+
+    <div ng-show="model.errorMessage" class="ab-margin-bottom-spacing alert pulse alert-danger">
+        {{model.errorMessage}}
+    </div>
+
+    <div ng-show="model.confMessage" class="ab-margin-bottom-spacing alert pulse alert-success">
+        {{model.confMessage}}
+    </div>
 </div>
 
 <div class="container-fluid ab-container well ab-carousel-well-search" ng-show="model.user">
@@ -41,26 +49,42 @@
     </div>
 </div>
 
-<div>
-    <div class="container-fluid ab-container ab-well-post well" ng-repeat="post in model.posts">
-        <h2 class="ab-text">{{post.title}}</h2>
-        <h6 class="ab-text">OP @{{post._user.username}} : {{post.dateCreated | date : "short"}} says...</h6>
-        <div class="ab-text" ng-bind-html="model.trustHtmlContent(post.text)"></div>
-        <div class="ab-well-comment well ab-text" ng-repeat="comment in post.comments">
-            @{{comment._user.username}} : {{comment.dateCreated | date : "short"}} replied...
-            {{comment.text}}
-        </div>
-        <div class="input-group ab-btn-container" ng-if="model.user">
-            <input type="text"
-                   ng-model="commentReply.text"
-                   class="form-control"
-                   placeholder="@{{model.user.username}} replies...">
-            <span class="input-group-btn">
+
+<div class="container-fluid ab-container ab-well-post well" ng-repeat="post in model.posts">
+
+    <h2 class="ab-text">
+        {{post.title}}
+        <a ng-if="model.userID == post._user._id || model.user.isAdmin" ng-click="model.deletePost(post._id)">
+            <span class="pull-right glyphicon glyphicon-remove ab-logo-color btn"></span>
+        </a>
+        <a ng-if="model.userID == post._user._id" href="#!/booKlub/blog/{{model.booKlubID}}/post/edit/{{post._id}}">
+            <span class="pull-right glyphicon glyphicon-pencil ab-logo-color btn"></span>
+        </a>
+    </h2>
+
+    <h6 class="ab-text">OP @{{post._user.username}} : {{post.dateCreated | date : "short"}} says...</h6>
+    <div class="ab-text" ng-bind-html="model.trustHtmlContent(post.text)"></div>
+
+    <div class="ab-well-comment well ab-text" ng-repeat="comment in post.comments">
+        @{{comment.username}} : {{comment.dateCreated | date : "short"}} replied...
+        {{comment.text}}
+
+        <a ng-if="model.userID == post._user._id || model.user.isAdmin" ng-click="model.deleteComment(comment._id)">
+            <span class="pull-right ab-glyphicons  glyphicon glyphicon-remove ab-logo-color"></span>
+        </a>
+    </div>
+
+    <div class="input-group ab-btn-container" ng-if="model.user">
+        <input type="text"
+               ng-model="commentReply.text"
+               class="form-control"
+               placeholder="@{{model.user.username}} replies...">
+        <span class="input-group-btn">
                 <button class="btn btn-danger" type="button" ng-click="model.createComment(commentReply, post._id)">
                     Comment
                 </button>
             </span>
-        </div>
     </div>
-
 </div>
+
+

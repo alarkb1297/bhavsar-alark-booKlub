@@ -26,7 +26,7 @@ function createComment(req, response) {
 
 function deleteComment(req, response) {
 
-    var commentID = req.params.booKlubID;
+    var commentID = req.params.commentID;
 
     commentModel
         .deleteComment(commentID)

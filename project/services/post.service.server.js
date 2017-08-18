@@ -7,7 +7,6 @@ app.put("/api/project/booKlub/post/:postID", updatePost);
 app.get("/api/project/booKlub/post/:postID", findByPostId);
 app.get("/api/project/booKlub/:booKlubID/posts", findAllPostsForBooKlub);
 
-
 function createPost(req, response) {
 
     var post = req.body;

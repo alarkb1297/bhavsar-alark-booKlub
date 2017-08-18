@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+
+    <a href="#!/booKlub/blog/{{model.booKlubID}}">
+        <span class="pull-left glyphicon glyphicon-chevron-left ab-logo-color btn-lg"></span>
+    </a>
+
+    <a ng-click="model.updatePost(model.post)">
+        <span class="pull-right glyphicon glyphicon-ok ab-logo-color btn-lg"></span>
+    </a>
+
+</nav>
+
+<div class="container-fluid ab-container well tab-content ab-carousel-well-search">
+
+    <h2 class="ab-text">Edit Post</h2>
+
+    <div ng-show="model.errorMessage" class="ab-margin-bottom-spacing alert pulse alert-danger">
+        {{model.errorMessage}}
+    </div>
+
+    <div ng-show="model.confMessage" class="ab-margin-bottom-spacing alert pulse alert-success">
+        {{model.confMessage}}
+    </div>
+
+    <label class="ab-text" for="postTitle">Title</label>
+    <input name="postTitle"
+           class="form-control"
+           ng-model="model.post.title"
+           placeholder="Post Title"
+           id="postTitle"/>
+
+    <div class="ab-margin-bottom-spacing"
+         ng-model="model.post.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+
+    <div class="ab-btn-container">
+        <a class="btn btn-block btn-danger" href="#!/booKlub/blog/{{model.booKlubID}}" role="button">Cancel</a>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+
+
+    <div class="pull-right ab-home-navbar-buttons">
+        <a ng-click="model.logout()">
+            <button type="button" class="btn navbar-btn btn-danger">Logout</button>
+        </a>
+    </div>
+
+</nav>

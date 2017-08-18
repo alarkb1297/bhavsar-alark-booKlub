@@ -25,7 +25,7 @@ function createComment(userID, postID, comment) {
             return postModel.addComment(postID, comment);
         })
         .then(function (booKlub) {
-            return tempPost;
+            return tempComment;
         })
 }
 
@@ -44,10 +44,12 @@ function updateComment(commentID, comment) {
 }
 
 function deleteComment(commentID) {
+
     return commentModel
         .findById(commentID)
         .then(function (comment) {
-            return postModel.removeComment(comment._post, commentID);
+            return postModel
+                .removeComment(comment._post, commentID);
         })
         .then(function (post) {
             return commentModel.remove({_id: commentID})

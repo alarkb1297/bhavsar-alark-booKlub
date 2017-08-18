@@ -9,11 +9,12 @@
 
         var model = this;
 
-        model.user = user;
         model.booKlubID = $routeParams.booKlubID;
 
         model.createPost = createPost;
         model.createComment = createComment;
+        model.deleteComment = deleteComment;
+        model.deletePost = deletePost;
         model.trustHtmlContent = trustHtmlContent;
 
 
@@ -27,7 +28,7 @@
 
             booKlubService
                 .findBooKlubById(model.booKlubID)
-                .then(function(booKlub) {
+                .then(function (booKlub) {
                     model.booKlub = booKlub;
                 });
 
@@ -50,6 +51,8 @@
                         return postService.findAllPostsForBooKlub(model.booKlubID);
                     })
                     .then(function (posts) {
+                        model.errorMessage = null;
+                        model.confMessage = "Successfully created post";
                         model.posts = posts;
                     })
             } else {
@@ -59,6 +62,8 @@
 
         function createComment(comment, postID) {
 
+            comment.username = model.user.username;
+
             commentService
                 .createComment(model.userID, postID, comment)
                 .then(function (comment) {
@@ -66,6 +71,39 @@
                         .findAllPostsForBooKlub(model.booKlubID);
                 })
                 .then(function (posts) {
+                    model.errorMessage = null;
+                    model.confMessage = "Successfully commented";
+                    model.posts = posts;
+                })
+        }
+
+
+        function deletePost(postID) {
+            postService
+                .deletePost(postID)
+                .then(function (post) {
+
+                    model.confMessage = null;
+                    return postService
+                        .findAllPostsForBooKlub(model.booKlubID);
+                })
+                .then(function (posts) {
+                    model.errorMessage = "Successfully deleted post";
+                    model.posts = posts;
+                })
+        }
+
+        function deleteComment(commentID) {
+
+            commentService
+                .deleteComment(commentID)
+                .then(function (comment) {
+                    return postService
+                        .findAllPostsForBooKlub(model.booKlubID);
+                })
+                .then(function (posts) {
+                    model.confMessage = null;
+                    model.errorMessage = "Successfully deleted comment";
                     model.posts = posts;
                 })
         }

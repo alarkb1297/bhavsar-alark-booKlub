@@ -36,7 +36,6 @@ function findPostById(postID) {
         .findById(postID)
         .populate('_booKlub')
         .populate('_user')
-        .populate('dateCreated')
         .populate('comments')
         .exec();
 }
@@ -87,21 +86,19 @@ function addComment(postID, comment) {
 }
 
 function removeComment(postID, commentID) {
-    return post
+
+    return postModel
         .findById(postID)
         .populate('comments')
         .exec()
         .then(function (post) {
 
-            for (var i = 0; i < post.commetns.length; i++) {
-
+            for (var i = 0; i < post.comments.length; i++) {
                 if (post.comments[i]._id == commentID) {
-                    post.commetns.splice(i, 1);
+                    post.comments.splice(i, 1);
                     break;
                 }
             }
-
             return post.save();
-
         })
 }
