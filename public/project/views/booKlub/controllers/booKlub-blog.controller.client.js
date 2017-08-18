@@ -43,38 +43,52 @@
 
         function createPost(post) {
 
-            if (user) {
-                postService
-                    .createPost(model.userID, model.booKlubID, post)
-                    .then(function (post) {
-                        model.confMessage = "Successfully created post";
-                        return postService.findAllPostsForBooKlub(model.booKlubID);
-                    })
-                    .then(function (posts) {
-                        model.errorMessage = null;
-                        model.confMessage = "Successfully created post";
-                        model.posts = posts;
-                    })
+            console.log(post);
+
+            if (!post || !post.title || !post.text) {
+                model.confMessage = null;
+                model.errorMessage = "Blank fields detected"
             } else {
-                location.url("/login")
+                if (user) {
+                    postService
+                        .createPost(model.userID, model.booKlubID, post)
+                        .then(function (post) {
+                            model.errorMessage = null;
+                            model.confMessage = "Successfully created post";
+                            return postService.findAllPostsForBooKlub(model.booKlubID);
+                        })
+                        .then(function (posts) {
+                            model.errorMessage = null;
+                            model.confMessage = "Successfully created post";
+                            model.posts = posts;
+                        })
+                } else {
+                    location.url("/login")
+                }
             }
         }
 
         function createComment(comment, postID) {
 
-            comment.username = model.user.username;
+            if (!comment || !comment.text) {
+                model.confMessage = null;
+                model.errorMessage = "Blank fields detected"
+            } else {
 
-            commentService
-                .createComment(model.userID, postID, comment)
-                .then(function (comment) {
-                    return postService
-                        .findAllPostsForBooKlub(model.booKlubID);
-                })
-                .then(function (posts) {
-                    model.errorMessage = null;
-                    model.confMessage = "Successfully commented";
-                    model.posts = posts;
-                })
+                comment.username = model.user.username;
+
+                commentService
+                    .createComment(model.userID, postID, comment)
+                    .then(function (comment) {
+                        return postService
+                            .findAllPostsForBooKlub(model.booKlubID);
+                    })
+                    .then(function (posts) {
+                        model.errorMessage = null;
+                        model.confMessage = "Successfully commented";
+                        model.posts = posts;
+                    })
+            }
         }
 
 
@@ -82,7 +96,6 @@
             postService
                 .deletePost(postID)
                 .then(function (post) {
-
                     model.confMessage = null;
                     return postService
                         .findAllPostsForBooKlub(model.booKlubID);

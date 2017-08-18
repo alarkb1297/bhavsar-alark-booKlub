@@ -27,7 +27,11 @@
 
         <li ng-repeat="user in model.users" class="list-group-item ab-admin-center-lists">
             <div class="row">
-                <div class="col-xs-4 col-sm-6 col-md-8 col-lg-10">{{user.username}}</div>
+                <div class="col-xs-4 col-sm-6 col-md-8 col-lg-10">
+                    <a href="#!/user/{{user._id}}">
+                        {{user.username}}
+                    </a>
+                </div>
                 <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1 ab-text-align-right">
                     <a href="#!/profile/admin-center/edit-user/{{user._id}}">
                         <button type="button" class="btn navbar-btn btn-default">Edit</button>
@@ -40,6 +44,34 @@
                 </div>
             </div>
         </li>
+    </ul>
+
+    ul class="list-group">
+
+    <li class="list-group-item active">
+        <div class="row">
+            <div class="col-xs-4 col-sm-6 col-md-8 col-lg-10">Username</div>
+            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1 ab-text-align-right"></div>
+            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1 ab-text-align-right">Delete</div>
+        </div>
+    </li>
+
+    <li ng-repeat="booKlub in model.booKlub" class="list-group-item ab-admin-center-lists">
+        <div class="row">
+            <div class="col-xs-4 col-sm-6 col-md-8 col-lg-10">
+                <a href="#!/booKlub/blog/{{booKlub._id}}">
+                    {{booKlub.title}}
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1 ab-text-align-right">
+            </div>
+            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1 ab-text-align-right">
+                <a ng-click="model.deleteBooKlub(booKlub._id)">
+                    <button type="button" class="btn navbar-btn btn-danger">Delete</button>
+                </a>
+            </div>
+        </div>
+    </li>
     </ul>
 
 

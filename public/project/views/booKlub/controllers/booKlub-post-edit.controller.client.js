@@ -18,23 +18,29 @@
         model.updatePost = updatePost;
 
         function init() {
-
             postService
                 .findByPostId(model.postID)
                 .then(function (post) {
                     model.post = post;
                 })
         }
+
         init();
 
 
         function updatePost(post) {
-            postService
-                .updatePost(model.postID, post)
-                .then(function (post) {
-                    model.post = post;
-                    model.confMessage = "Successfully updated post"
-                })
+
+            if (!post || !post.text || !post.title) {
+                model.errorMessage = "Blank fields detected"
+            } else {
+
+                postService
+                    .updatePost(model.postID, post)
+                    .then(function (post) {
+                        model.post = post;
+                        model.confMessage = "Successfully updated post"
+                    })
+            }
         }
 
     }
