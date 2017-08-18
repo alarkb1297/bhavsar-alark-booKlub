@@ -69,7 +69,7 @@
             <h2 class="ab-text-search">Popular Books</h2>
             <i class="fa fa-circle-o-notch fa-spin ab-loading-spinner" ng-show="model.showSpinner"></i>
             <div class="slick-carousel-search" ng-hide="model.showSpinner">
-                <div class="ab-carousel-div animated bounceIn" ng-repeat="book in model.allBooks">
+                <div class="ab-carousel-div animated zoomIn" ng-repeat="book in model.allBooks">
                     <a href="#!/details/{{book.volumeID}}">
                         <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                         {{book.title}}

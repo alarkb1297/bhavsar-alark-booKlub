@@ -66,7 +66,7 @@
                 <i class="fa fa-circle-o-notch fa-spin ab-loading-spinner" ng-show="model.showSpinner"></i>
                 <div class="container-fluid" ng-hide="model.showSpinner">
                     <div class="slick-carousel">
-                        <div class="ab-carousel-div animated bounceIn" ng-repeat="book in model.bookShelf">
+                        <div class="ab-carousel-div animated zoomIn" ng-repeat="book in model.bookShelf">
                             <a href="#!/details/{{book.volumeID}}">
                                 <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                                 {{book.title}}
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="booKlub in model.booKlubs" class="list-group-item ab-admin-center-lists  animated flipInX">
+                        <li ng-repeat="booKlub in model.booKlubs" class="list-group-item ab-admin-center-lists animated flipInX">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/booKlub/blog/{{booKlub._id}}">
