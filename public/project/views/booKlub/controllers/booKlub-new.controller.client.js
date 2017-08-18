@@ -20,7 +20,7 @@
 
         function createBooKlub(booKlub) {
 
-            if (!booKlub.title || !booKlub.description) {
+            if (!booKlub || !booKlub.title || !booKlub.description) {
                 model.errorMessage = "Blank fields detected"
             } else {
                 booKlubService
