@@ -65,7 +65,7 @@
             <div class="tab-pane fade in active" id="tab1">
                 <div class="container-fluid">
                     <div class="slick-carousel">
-                        <div class="ab-carousel-div" ng-repeat="book in model.bookShelf">
+                        <div class="ab-carousel-div animated bounceIn" ng-repeat="book in model.bookShelf">
                             <a href="#!/details/{{book.volumeID}}">
                                 <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                                 {{book.title}}
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li ng-repeat="booKlub in model.user.booKlubs" class="list-group-item ab-admin-center-lists">
+                        <li ng-repeat="booKlub in model.user.booKlubs" class="list-group-item ab-admin-center-lists animated flipInX">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/booKlub/blog/{{booKlub._id}}">
@@ -108,7 +108,7 @@
                                 <div class="col-xs-6 ab-text-align-right">Unfollow</div>
                             </div>
                         </li>
-                        <li ng-repeat="following in model.user.following" class="list-group-item ab-admin-center-lists">
+                        <li ng-repeat="following in model.user.following" class="list-group-item ab-admin-center-lists animated flipInX">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/user/{{following._id}}">
@@ -131,7 +131,7 @@
                                 <div class="col-xs-6 ab-text-align-right"></div>
                             </div>
                         </li>
-                        <li ng-repeat="follower in model.user.followers" class="list-group-item ab-admin-center-lists">
+                        <li ng-repeat="follower in model.user.followers" class="list-group-item ab-admin-center-lists animated flipInX">
                             <div class="row">
                                 <div class="col-xs-6">
                                     <a href="#!/user/{{follower._id}}">

@@ -65,13 +65,15 @@
     <h6 class="ab-text">OP @{{post._user.username}} : {{post.dateCreated | date : "short"}} says...</h6>
     <div class="ab-text" ng-bind-html="model.trustHtmlContent(post.text)"></div>
 
-    <div class="ab-well-comment well ab-text" ng-repeat="comment in post.comments">
-        @{{comment.username}} : {{comment.dateCreated | date : "short"}} replied...
-        {{comment.text}}
+    <div class="ab-well-comment well ab-text animated fadeInUp" ng-repeat="comment in post.comments">
 
-        <a ng-if="model.userID == post._user._id || model.user.isAdmin" ng-click="model.deleteComment(comment._id)">
-            <span class="pull-right ab-glyphicons  glyphicon glyphicon-remove ab-logo-color"></span>
-        </a>
+            @{{comment.username}} : {{comment.dateCreated | date : "short"}} replied...
+            {{comment.text}}
+
+            <a ng-if="model.userID == post._user._id || model.user.isAdmin" ng-click="model.deleteComment(comment._id)">
+                <span class="pull-right ab-glyphicons  glyphicon glyphicon-remove ab-logo-color"></span>
+            </a>
+
     </div>
 
     <div class="input-group ab-btn-container" ng-if="model.user">
