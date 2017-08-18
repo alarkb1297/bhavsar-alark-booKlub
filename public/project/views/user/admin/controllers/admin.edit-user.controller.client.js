@@ -41,8 +41,11 @@
             userService
                 .removeBookFromBookShelf(model.userID, volumeID)
                 .then(function (response) {
-                    location.reload();
                     model.confMessage = "Book successfully removed from user's bookShelf";
+                    return userService.findUserById(model.userID);
+                })
+                .then(function (user) {
+                    model.user = user;
                 })
 
         }
