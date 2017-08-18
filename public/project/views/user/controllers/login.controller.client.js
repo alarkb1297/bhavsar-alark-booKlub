@@ -25,7 +25,7 @@
                 return;
             }
 
-            if (!user.username || !username.password) {
+            if (!user.username || !user.password) {
                 model.errorMessage = "Blank fields detected";
                 return;
             }
