@@ -62,12 +62,12 @@
         </a>
     </h2>
 
-    <h6 class="ab-text">OP @{{post._user.username}} : {{post.dateCreated | date : "short"}} says...</h6>
+    <h6 class="ab-text">OP <a class="ab-text" href="#!/user/{{post._user._id}}">@{{post._user.username}}</a> : {{post.dateCreated | date : "short"}} says...</h6>
     <div class="ab-text" ng-bind-html="model.trustHtmlContent(post.text)"></div>
 
     <div class="ab-well-comment well ab-text animated fadeInUp" ng-repeat="comment in post.comments">
 
-            @{{comment.username}} : {{comment.dateCreated | date : "short"}} replied...
+            <a class="ab-text" href="#!/user/{{comment._user}}">@{{comment.username}}</a> : {{comment.dateCreated | date : "short"}} replied...
             {{comment.text}}
 
             <a ng-if="model.userID == post._user._id || model.user.isAdmin" ng-click="model.deleteComment(comment._id)">
