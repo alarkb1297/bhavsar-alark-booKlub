@@ -70,7 +70,7 @@
             <i class="fa fa-circle-o-notch fa-spin ab-loading-spinner" ng-show="model.showSpinner"></i>
             <div class="slick-carousel-search" ng-hide="model.showSpinner">
                 <div class="ab-carousel-div animated zoomIn" ng-repeat="book in model.allBooks">
-                    <a href="#!/details/{{book.volumeID}}">
+                    <a class="ab-text" href="#!/details/{{book.volumeID}}">
                         <img class="ab-carousel-img" ng-src="{{book.imgUrl}}">
                         {{book.title}}
                     </a>
